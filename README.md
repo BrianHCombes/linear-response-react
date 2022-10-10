@@ -1,4 +1,4 @@
-# Specification for Linear Response API 
+# Specification for the Linear Response API 
 
 This is the Linear Response API specification written in reactJS. 
 
