@@ -1,6 +1,6 @@
 # Specification: Linear Response API 
 
-This is the Linear Response API specification written in reactJS. 
+This is the Linear Response API specification written in reactJS to be viewed in a browser. 
 
 *Note: Had begun learning ReactJS on Oct 3, 2022 and as of Oct 09, 2022 had started building said Linear Response API specification in ResactJS.*
 
