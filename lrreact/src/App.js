@@ -9,8 +9,13 @@ import './App.css';
 
 
 import {lrTestFunc1, lrTestFunc2, lrTestObject} from './lr-test.js';
-import lrBackground from './images/lr-background_05.png';
+import titleBanner01 from './images/lr-title-banner_01.jpg';
+import titleBanner02 from './images/lr-title-banner_02.jpg';
+import titleBanner03 from './images/lr-title-banner_03.jpg';
 import {lr} from './lr/lr-single.js';
+
+//import './fonts/ARLRDBD_0.TTF';
+
 
 
 
@@ -18,7 +23,9 @@ import { useState } from "react";
 import ReactDOM from "react-dom/client";
 
 //let lrResponse = lr.w("width:%",60,20);
+//console.log("lrResponse is: " + lrResponse);
 //let lrResponse = lr.URPw;
+
 
 
 function Car() {
@@ -41,16 +48,38 @@ function Car() {
 //      return { ...preState}});
   };
 
+
+  let func1 = function(){
+    return "this is func 1";
+  };
+  let func2 = function(){
+    return "this is func 2";
+  };
+  let func3 = function(){
+    return "this is func 3";
+  };
   
+  let returnFunc = lr.whtml(func1,1500,func2,1000,func3);
+  console.log("func returned is: " + returnFunc());
   
 
-  let eWidth = "80%";
+  let test1 = lr.whtml(titleBanner01,1000,titleBanner02);
+  console.log("test is: " + test1);
+  
+  //let test2 = titleBanner01;
+  // lr.whtml(titleBanner01,1000,titleBanner02)
   return (
     <React.StrictMode>
       <div style={{textAlign:'center'}}>
-        <img  src={lrBackground} 
+        <img  src={test1} 
               alt="LR Graphic Here"
-              style={{width:'99.5%',  border:'2px solid white', borderRadius:'0.75em'}}></img>
+              style={{width:'99.5%',  
+                      border:'2px solid white', 
+                      borderRadius:'0.75em'
+                      
+                      
+                    }}
+        ></img>
       </div>
       
       
@@ -63,11 +92,20 @@ function Car() {
         onClick={updateColor}
       >Blue</button>
               
-    <div  class="css1" 
+    <div  className="" 
           id="titling" 
-          style={{width:eWidth, marginLeft:'auto', marginRight:'auto', backgroundColor:'#bbbbbb', border:'2px solid white', borderRadius:'0.75em', fontFamily:'Tahoma'}}>
+          style={{
+                  width: lr.w("%",55,98), 
+                  marginLeft:'auto', 
+                  marginRight:'auto', 
+                  backgroundColor:'#bbbbbb',
+                  border:'2px solid white', 
+                  borderRadius:'0.75em', 
+                  fontFamily: 'Arial Rounded MT Bold',
+                  /*fontFamily:'Tahoma'*/
+                }}>
       <div style={{textAlign:'center'}}>
-        <div class="arialRnd" style={{fontSize:'2.5em', lineHeight:'150%', padding:'1% 0 0 0', textAlign:'center'}}>
+        <div className="arialRnd" style={{fontSize: lr.w("em",3.5,1.5), lineHeight:'150%', padding:'1% 0 0 0', textAlign:'center'}}>
             Welcome to LR
         </div>    
         <ul style={{paddingLeft:'8%', textAlign:'left'}}>

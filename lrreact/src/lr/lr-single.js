@@ -1,11 +1,6 @@
 // LR Response Object Declaration - window level scope
 var lr = {};
 
-//***********************************************************************************************************************************************************
-// Default Config Section
-// What is lr-default-config.js in separated files
-//***********************************************************************************************************************************************************
-
 // Default constants
 const lrDeviceWidth                         = window.screen.width;
 const lrDeviceWidthPropertyApplied          = "window.screen.width";
@@ -29,9 +24,9 @@ const lrRangePoint1Ratio                    = (lrRangeUpperPointHeight/lrRangeUp
 const lrRangePoint2Ratio                    = (lrRangeLowerPointHeight/lrRangeLowerPointWidth).toFixed(4);
 
 
+
 //***********************************************************************************************************************************************************
-// Getter Setter Section
-// What is lr-getter-setters.js in separated files
+// getter setters
 //***********************************************************************************************************************************************************
 
 lr.default = function(){
@@ -187,12 +182,12 @@ lr.setVPp = function(viewportPropertyName){
     case "window.screen.height":      windowPropertyAssignmentsHeight(window.screen.height, viewportPropertyName); break;
     case "window.screen.availWidth":  windowPropertyAssignmentsWidth(window.screen.availWidth, viewportPropertyName); break;
     case "window.screen.availHeight": windowPropertyAssignmentsHeight(window.screen.availHeight, viewportPropertyName); break;
-    case "$(window).outerWidth()":    windowPropertyAssignmentsWidth($(window).outerWidth(), viewportPropertyName); break;
-    case "$(window).outerHeight()":   windowPropertyAssignmentsHeight($(window).outerHeight(), viewportPropertyName); break;                                  
-    case "$(window).innerWidth()":    windowPropertyAssignmentsWidth($(window).innerWidth(), viewportPropertyName); break;
-    case "$(window).innerHeight()":   windowPropertyAssignmentsHeight($(window).innerHeight(), viewportPropertyName); break;       
-    case "$(window).width()":         windowPropertyAssignmentsWidth($(window).width(), viewportPropertyName); break;
-    case "$(window).height()":        windowPropertyAssignmentsHeight($(window).height(), viewportPropertyName); break;
+//    case "$(window).outerWidth()":    windowPropertyAssignmentsWidth($(window).outerWidth(), viewportPropertyName); break;
+//    case "$(window).outerHeight()":   windowPropertyAssignmentsHeight($(window).outerHeight(), viewportPropertyName); break;                                  
+//    case "$(window).innerWidth()":    windowPropertyAssignmentsWidth($(window).innerWidth(), viewportPropertyName); break;
+//    case "$(window).innerHeight()":   windowPropertyAssignmentsHeight($(window).innerHeight(), viewportPropertyName); break;       
+//    case "$(window).width()":         windowPropertyAssignmentsWidth($(window).width(), viewportPropertyName); break;
+//    case "$(window).height()":        windowPropertyAssignmentsHeight($(window).height(), viewportPropertyName); break;
     default:                          console.log("Viewport property \"" + viewportPropertyName + "\" not found");
   };
   function windowPropertyAssignmentsWidth(windowPropertyWidth, windowPropertyWidthName){
@@ -284,11 +279,260 @@ lr.getLRpString = function(){
 };
 
 //***********************************************************************************************************************************************************
-// Method processing
-// What is lr-process.js in separated files
+// LR HTML and CSS processing
 //***********************************************************************************************************************************************************
 
 
+function processHTMLCSS(paramArgs, axisToCalculate){
+  
+  GetSet().setAxisToUse(axisToCalculate);
+  var argData =  {
+                  "err":false,
+                  "args":paramArgs,
+                  "result":""
+                };
+  
+    // check args length
+    argData = argLengthCheckHTMLCSS(argData);
+    if(argData.err === true){
+      argData.result = undefined;
+      return argData.result;
+      //console.log("Error True: Return from Length Check is: " + JSON.stringify(argData));
+    };
+    //console.log("Error False: Return from Length Check is: " + JSON.stringify(argData));
+    
+    
+    // convert args if string or array passed
+    if(argData.err === false && argData.args.length === 1){ 
+      argData = convertArgsHTMLCSS(argData);
+      argData = argsCheckHTMLCSS(argData);
+      if(argData.err === true){
+        argData.result = "undefined";
+        return argData.result;
+      };
+    };
+    
+    // args Check
+    if(argData.err === false){
+      argData = argsCheckHTMLCSS(argData);
+      if(argData.err === true){
+        argData.result = undefined;
+        return argData.result;
+      }
+    }
+    
+    // filter and return proper parameter group
+    if(argData.err === false){
+      argData.args = groupFilterHTMLCSS(argData);
+      argData.result = argData.args[0];
+    };  
+    
+    return(argData);
+};
+
+
+
+function argLengthCheckHTMLCSS(data){
+    
+      // if parameters
+      if(data.args.length % 3 !== 0 && data.args.length > 1){
+        console.error("Linear Response ERROR!: Incorrect number of parameters being passed in the calling function. Must be in multiples of 3. " +
+                      "If passing a string or array assure number of demarked elements within the string or array are in multiples of 3 " +
+                      "There are currently " + data.args.length + " parameters/elements detected. They are: " + JSON.stringify(data.args));
+        data.err = true;
+      } else
+      
+      // if array or string or unknown format
+      if(data.args.length === 1){
+        if(Array.isArray(data.args[0]) === true){
+          if(data.args[0].length % 3 !== 0){
+            console.error("Linear Response ERROR!: Incorrect number of parameters in the array passed as an argument in the calling Linear Response function. " +
+                          "The number of parameters in the array must be in multiples of 3. " +
+                          "There are currently " + data.args[0].length + " parameters/elements detected. They are: " + data.args[0]);
+            data.err = true;
+          }
+        } else 
+        if(typeof(data.args[0]) === "string"){ 
+          var stringTest = [];
+          stringTest = data.args[0].split(",");
+          if(stringTest.length % 3 !== 0){
+            console.error("Linear Response ERROR!: Incorrect number of comma separated parameters in the string passed as an argument in the calling Linear Response function. " +
+                          "The number of parameters in the array must be in multiples of 3. " +
+                          "There are currently " + stringTest.length + " parameters/elements detected. They are: " + stringTest);
+            data.err = true;
+          }
+        } else {
+          console.error("Linear Response ERROR!: Unknown parameter format has been submitted by the calling Linear Response function. " +
+                      "Expecting individual parameters, an array, or a string. Parameter format received is: " + JSON.stringify(data.args[0]));
+          data.err = true;    
+        };
+      }
+    return data;  
+  };  
+  
+function convertArgsHTMLCSS(data){
+    // If array
+    if(typeof(data.args[0]) === 'object' && data.args.length === 1){
+      data.args = data.args[0];
+      for(var i=0; i<data.args.length; i++){
+        if(isNaN(data.args[i]) && i%3 !== 0){
+          var args = Array.prototype.slice.call(data.args);
+          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a number - This group was received as an array.");
+          data.err = true;
+        }
+        else if(!isNaN(data.args[i]) && i%3 === 0 && data.args[i] != 0){
+          var args = Array.prototype.slice.call(data.args);
+          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a string - This group was received as an array.");
+          data.err = true;
+          break;
+        }
+        else if(!isNaN(data.args[i]) && i%3 !== 0){data.args[i]*=1;}; // This conversion here must be part of a production release if it is decided to accept numbers as strings (for example: "8") of which will be converted to a number by multiplying by one..
+      };
+    };
+
+    // If string
+    if(typeof(data.args[0]) === 'string' && data.args.length === 1){
+      data.args = data.args[0].split(","); // This conversion here must be part of a production release.
+      for(var i=0; i<data.args.length; i++){
+        if(isNaN(data.args[i]) && i%3 !== 0){
+          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + data.args + " must be a number - This group was received as a string.");
+          data.err = true;
+          break;
+        }
+        else if(!isNaN(data.args[i]) && i%3 === 0){
+          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + data.args + " must be a string - This group was received as a string.");
+          data.err = true;
+          break;
+        }
+        else if(!isNaN(data.args[i]) && i%3 !== 0){ // This conversion here must be part of a production release.
+          data.args[i]*=1;
+        }; 
+
+        if(i%3 === 0 && (data.args[i] === '""' || data.args[i] === "''")){
+          data.args[i] = "";
+        };
+      };
+    };
+    console.log(data.args[3]);
+    return data;
+};    
+
+function argsCheckHTMLCSS(data){
+      for(var i=0; i<data.args.length; i++){
+        if(isNaN(data.args[i]) && i%3 != 0){
+              var args = Array.prototype.slice.call(data.args);
+              console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a number - This group was received or converted to primitive parameters.");
+              data.err = true;
+              break;
+        }else{if(i%3 !== 0)data.args[i]*=1;}
+        if(!isNaN(data.args[i]) && i%3 === 0 && data.args[i] != 0){
+          var args = Array.prototype.slice.call(data.args);
+          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a string - This group was received or converted to primitive parameters.");
+          data.err = true;
+          break;
+        }
+      }
+    return data;
+  };
+  
+function groupFilterHTMLCSS(data){
+  
+    var onMatch = false;
+    var axisDimension;
+    var axisUsed = GetSet().getAxisToUse();
+    
+    if(axisUsed === "width"){   
+      axisDimension = lr.vpWidth;
+    } else 
+    if(axisUsed === "windowWidth"){   
+      axisDimension = lr.windowWidth;
+    } else   
+    if(axisUsed === "height"){
+      axisDimension = lr.vpHeight;
+    } else
+    if(axisUsed === "windowHeight"){
+      axisDimension = lr.windowHeight;
+    } else
+    if(axisUsed === "ratio"){
+      axisDimension = lr.vpRatio;
+    } else
+    if(axisUsed === "windowRatio"){
+      axisDimension = lr.windowRatio;
+    } else
+    {
+      console.error("ERROR! Unknown axis, should be either 'width', 'windowWidth', 'height', 'windowHeight', 'ratio', or 'windowRatio'. Response calculation aborted.");
+    }
+    
+    // If more than one parameter group.
+    if(data.args.length > 3){
+          onMatch = false;
+          for(var i=0; i<(data.args.length+3); i+=3){
+            if((axisDimension <= data.args[i+1] && axisDimension >= data.args[i+2]) || (axisDimension >= data.args[i+1] && axisDimension <= data.args[i+2])){
+              onMatch = true;
+              data.args = Array.prototype.slice.call(data.args);
+              data.args = data.args.slice(i,i+3);
+              return data.args;
+            };
+          };
+          
+          // Find closest parameter group match when view port is outside parameter groups given.
+          if(onMatch === false){
+            
+            if(data.args.length > 3){
+              var diff;
+              var closest = data.args[1] - axisDimension;
+              var closestParamIndex = 1;
+              data.args = Array.prototype.slice.call(data.args);
+              
+              for(var i=0; i<data.args.length; i+=3){
+                diff = Math.abs(data.args[i+1] - axisDimension);
+                if(diff < closest){
+                  closest = diff;
+                  closestParamIndex = i+1;
+                }
+                diff = Math.abs(data.args[i+2] - axisDimension);
+                if(diff < closest){
+                  closest = diff;
+                  closestParamIndex = i+2;
+                }
+              }
+              //console.log("Closest param index: " + closestParamIndex);
+              var paramGroup = Math.floor(closestParamIndex/3);
+              
+              data.args[0] = data.args[paramGroup*3 + 0];
+              data.args[1] = data.args[paramGroup*3 + 1];
+              data.args[2] = data.args[paramGroup*3 + 2];
+             
+              data.args = data.args.slice(0,3);
+              
+//              console.warn( "Warning: view port " + axisUsed + "\nThis device's view port " + axisUsed + " is outside any view port " + axisUsed + "s specified by this set of LR parameter groups. \n" +
+//                            "The return value is calculated using the LR parameter group closest to this device's view port " + axisUsed + " of " + axisDimension + "px\n" +
+//                            "The closest LR parameter group is: " +
+//                            data.args[0] + "," + data.args[1] + "," + data.args[2]);
+              return data.args;
+            }
+          }
+    }
+    // If only one parameter group provided.
+    else{
+      onMatch = false;
+      if((axisDimension > data.args[1]) || (axisDimension < data.args[2])){
+//        console.warn( "Warning: view port " + axisUsed + "\nThis device's view port " + axisUsed + " is outside the view port " + axisUsed + " specified by this LR parameter group.\n" +
+//                      "However, the return value is still calculated using this LR parameter group.\nReported " + axisUsed + " is:" + axisDimension + "px\n" +
+//                      "The LR parameter group is: " +
+//                      data.args[0] + "," + data.args[1] + "," + data.args[2]);
+      };
+      data.args = Array.prototype.slice.call(data.args);
+      data.args = data.args.slice(0,3);
+      return data.args;
+    };
+  };
+  
+  //***********************************************************************************************************************************************************
+  // LR gradient methods processing
+  //***********************************************************************************************************************************************************
+  
+  
 // The processArgs method accepts LR parameters and the axis to calculate. 
 // It checks, converts, and filters the parameters before sending the final parameter group to the unitCalculator method for calculation.
 // It returns the calculated CSS unit value based on the devices view port width or view port height.
@@ -588,267 +832,11 @@ lr.getLRpString = function(){
     }
   };
   
-//***********************************************************************************************************************************************************
-// HTML and CSS method calls
-// What is lr-html-css.js in separated files
-//***********************************************************************************************************************************************************
-
-
-
-
-function processHTMLCSS(paramArgs, axisToCalculate){
-  
-  GetSet().setAxisToUse(axisToCalculate);
-  var argData =  {
-                  "err":false,
-                  "args":paramArgs,
-                  "result":""
-                };
-  
-    // check args length
-    argData = argLengthCheckHTMLCSS(argData);
-    if(argData.err === true){
-      argData.result = undefined;
-      return argData.result;
-      //console.log("Error True: Return from Length Check is: " + JSON.stringify(argData));
-    };
-    //console.log("Error False: Return from Length Check is: " + JSON.stringify(argData));
-    
-    
-    // convert args if string or array passed
-    if(argData.err === false && argData.args.length === 1){ 
-      argData = convertArgsHTMLCSS(argData);
-      argData = argsCheckHTMLCSS(argData);
-      if(argData.err === true){
-        argData.result = "undefined";
-        return argData.result;
-      };
-    };
-    
-    // args Check
-    if(argData.err === false){
-      argData = argsCheckHTMLCSS(argData);
-      if(argData.err === true){
-        argData.result = undefined;
-        return argData.result;
-      }
-    }
-    
-    // filter and return proper parameter group
-    if(argData.err === false){
-      argData.args = groupFilterHTMLCSS(argData);
-      argData.result = argData.args[0];
-    };  
-    
-    return(argData);
-};
-
-
-
-function argLengthCheckHTMLCSS(data){
-    
-      // if parameters
-      if(data.args.length % 3 !== 0 && data.args.length > 1){
-        console.error("Linear Response ERROR!: Incorrect number of parameters being passed in the calling function. Must be in multiples of 3. " +
-                      "If passing a string or array assure number of demarked elements within the string or array are in multiples of 3 " +
-                      "There are currently " + data.args.length + " parameters/elements detected. They are: " + JSON.stringify(data.args));
-        data.err = true;
-      } else
-      
-      // if array or string or unknown format
-      if(data.args.length === 1){
-        if(Array.isArray(data.args[0]) === true){
-          if(data.args[0].length % 3 !== 0){
-            console.error("Linear Response ERROR!: Incorrect number of parameters in the array passed as an argument in the calling Linear Response function. " +
-                          "The number of parameters in the array must be in multiples of 3. " +
-                          "There are currently " + data.args[0].length + " parameters/elements detected. They are: " + data.args[0]);
-            data.err = true;
-          }
-        } else 
-        if(typeof(data.args[0]) === "string"){ 
-          var stringTest = [];
-          stringTest = data.args[0].split(",");
-          if(stringTest.length % 3 !== 0){
-            console.error("Linear Response ERROR!: Incorrect number of comma separated parameters in the string passed as an argument in the calling Linear Response function. " +
-                          "The number of parameters in the array must be in multiples of 3. " +
-                          "There are currently " + stringTest.length + " parameters/elements detected. They are: " + stringTest);
-            data.err = true;
-          }
-        } else {
-          console.error("Linear Response ERROR!: Unknown parameter format has been submitted by the calling Linear Response function. " +
-                      "Expecting individual parameters, an array, or a string. Parameter format received is: " + JSON.stringify(data.args[0]));
-          data.err = true;    
-        };
-      }
-    return data;  
-  };  
-  
-function convertArgsHTMLCSS(data){
-    // If array
-    if(typeof(data.args[0]) === 'object' && data.args.length === 1){
-      data.args = data.args[0];
-      for(var i=0; i<data.args.length; i++){
-        if(isNaN(data.args[i]) && i%3 !== 0){
-          var args = Array.prototype.slice.call(data.args);
-          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a number - This group was received as an array.");
-          data.err = true;
-        }
-        else if(!isNaN(data.args[i]) && i%3 === 0 && data.args[i] != 0){
-          var args = Array.prototype.slice.call(data.args);
-          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a string - This group was received as an array.");
-          data.err = true;
-          break;
-        }
-        else if(!isNaN(data.args[i]) && i%3 !== 0){data.args[i]*=1;}; // This conversion here must be part of a production release if it is decided to accept numbers as strings (for example: "8") of which will be converted to a number by multiplying by one..
-      };
-    };
-
-    // If string
-    if(typeof(data.args[0]) === 'string' && data.args.length === 1){
-      data.args = data.args[0].split(","); // This conversion here must be part of a production release.
-      for(var i=0; i<data.args.length; i++){
-        if(isNaN(data.args[i]) && i%3 !== 0){
-          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + data.args + " must be a number - This group was received as a string.");
-          data.err = true;
-          break;
-        }
-        else if(!isNaN(data.args[i]) && i%3 === 0){
-          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + data.args + " must be a string - This group was received as a string.");
-          data.err = true;
-          break;
-        }
-        else if(!isNaN(data.args[i]) && i%3 !== 0){ // This conversion here must be part of a production release.
-          data.args[i]*=1;
-        }; 
-
-        if(i%3 === 0 && (data.args[i] === '""' || data.args[i] === "''")){
-          data.args[i] = "";
-        };
-      };
-    };
-    console.log(data.args[3]);
-    return data;
-};    
-
-function argsCheckHTMLCSS(data){
-      for(var i=0; i<data.args.length; i++){
-        if(isNaN(data.args[i]) && i%3 != 0){
-              var args = Array.prototype.slice.call(data.args);
-              console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a number - This group was received or converted to primitive parameters.");
-              data.err = true;
-              break;
-        }else{if(i%3 !== 0)data.args[i]*=1;}
-        if(!isNaN(data.args[i]) && i%3 === 0 && data.args[i] != 0){
-          var args = Array.prototype.slice.call(data.args);
-          console.error("ERROR!!: parameter " + (i+1) + " from the parameter group: " + args + " must be a string - This group was received or converted to primitive parameters.");
-          data.err = true;
-          break;
-        }
-      }
-    return data;
-  };
-  
-function groupFilterHTMLCSS(data){
-  
-    var onMatch = false;
-    var axisDimension;
-    var axisUsed = GetSet().getAxisToUse();
-    
-    if(axisUsed === "width"){   
-      axisDimension = lr.vpWidth;
-    } else 
-    if(axisUsed === "windowWidth"){   
-      axisDimension = lr.windowWidth;
-    } else   
-    if(axisUsed === "height"){
-      axisDimension = lr.vpHeight;
-    } else
-    if(axisUsed === "windowHeight"){
-      axisDimension = lr.windowHeight;
-    } else
-    if(axisUsed === "ratio"){
-      axisDimension = lr.vpRatio;
-    } else
-    if(axisUsed === "windowRatio"){
-      axisDimension = lr.windowRatio;
-    } else
-    {
-      console.error("ERROR! Unknown axis, should be either 'width', 'windowWidth', 'height', 'windowHeight', 'ratio', or 'windowRatio'. Response calculation aborted.");
-    }
-    
-    // If more than one parameter group.
-    if(data.args.length > 3){
-          onMatch = false;
-          for(var i=0; i<(data.args.length+3); i+=3){
-            if((axisDimension <= data.args[i+1] && axisDimension >= data.args[i+2]) || (axisDimension >= data.args[i+1] && axisDimension <= data.args[i+2])){
-              onMatch = true;
-              data.args = Array.prototype.slice.call(data.args);
-              data.args = data.args.slice(i,i+3);
-              return data.args;
-            };
-          };
-          
-          // Find closest parameter group match when view port is outside parameter groups given.
-          if(onMatch === false){
-            
-            if(data.args.length > 3){
-              var diff;
-              var closest = data.args[1] - axisDimension;
-              var closestParamIndex = 1;
-              data.args = Array.prototype.slice.call(data.args);
-              
-              for(var i=0; i<data.args.length; i+=3){
-                diff = Math.abs(data.args[i+1] - axisDimension);
-                if(diff < closest){
-                  closest = diff;
-                  closestParamIndex = i+1;
-                }
-                diff = Math.abs(data.args[i+2] - axisDimension);
-                if(diff < closest){
-                  closest = diff;
-                  closestParamIndex = i+2;
-                }
-              }
-              //console.log("Closest param index: " + closestParamIndex);
-              var paramGroup = Math.floor(closestParamIndex/3);
-              
-              data.args[0] = data.args[paramGroup*3 + 0];
-              data.args[1] = data.args[paramGroup*3 + 1];
-              data.args[2] = data.args[paramGroup*3 + 2];
-             
-              data.args = data.args.slice(0,3);
-              
-//              console.warn( "Warning: view port " + axisUsed + "\nThis device's view port " + axisUsed + " is outside any view port " + axisUsed + "s specified by this set of LR parameter groups. \n" +
-//                            "The return value is calculated using the LR parameter group closest to this device's view port " + axisUsed + " of " + axisDimension + "px\n" +
-//                            "The closest LR parameter group is: " +
-//                            data.args[0] + "," + data.args[1] + "," + data.args[2]);
-              return data.args;
-            }
-          }
-    }
-    // If only one parameter group provided.
-    else{
-      onMatch = false;
-      if((axisDimension > data.args[1]) || (axisDimension < data.args[2])){
-//        console.warn( "Warning: view port " + axisUsed + "\nThis device's view port " + axisUsed + " is outside the view port " + axisUsed + " specified by this LR parameter group.\n" +
-//                      "However, the return value is still calculated using this LR parameter group.\nReported " + axisUsed + " is:" + axisDimension + "px\n" +
-//                      "The LR parameter group is: " +
-//                      data.args[0] + "," + data.args[1] + "," + data.args[2]);
-      };
-      data.args = Array.prototype.slice.call(data.args);
-      data.args = data.args.slice(0,3);
-      return data.args;
-    };
-  };
-  
   //***********************************************************************************************************************************************************
-  // Lineation Method Calls
-  // What is lr-main.js in separated files
+  // LR Gradient methods
   //***********************************************************************************************************************************************************
   
-   
-
-
+ 
 //***********************************************************************************************************************************************************
 // lr.to Console method:
 // The lr.toConsole method outputs all vital view port settings to the console. 
@@ -961,37 +949,37 @@ lr.eval = function(){
 
 
 
-lr.wFiveArg = function(){
+lr.wFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "width");
   return returnArgs.result;
 };
 
-lr.wwFiveArg = function(){
+lr.wwFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "windowWidth");
   return returnArgs.result;
 };
 
-lr.hFiveArg = function(){
+lr.hFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "height");
   return returnArgs.result;
 };
 
-lr.whFiveArg = function(){
+lr.whFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "windowHeight");
   return returnArgs.result;
 };
 
-lr.rFiveArg = function(){
+lr.rFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "ratio");
   return returnArgs.result;
 };
 
-lr.wrFiveArg = function(){
+lr.wrFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "windowRatio");
   return returnArgs.result;
@@ -1019,16 +1007,12 @@ lr.wrFiveArg = function(){
 // has been upgraded to a new streamlined version for the user. 
 // Case in point: There is now a 3-arg method and a 3-arg + 2n argument method.
 // A few more tests and this code work will be ready for production.
+let fullFormArgs;
 lr.w = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPw,lr.LRPw);
-  var returnArgs = processArgs(arguments, "width");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPw,lr.LRPw);
+  var returnArgs = processArgs(fullFormArgs, "width");
   return returnArgs.result;
 };
-
-lr.wLong = function(){};
-lr.wFull = function(){};
-lr.w5    = function(){};
-lr.w5arg = function(){};
 
 
 //***********************************************************************************************************************************************************
@@ -1040,8 +1024,8 @@ lr.w5arg = function(){};
 // than the device width. The arguments sent are the hard css properties that lineate from one to the other between 
 // the two specified device-viewport ranges.
 lr.ww = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPw,lr.LRPw);
-  var returnArgs = processArgs(arguments, "windowWidth");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPw,lr.LRPw);
+  var returnArgs = processArgs(fullFormArgs, "windowWidth");
   return returnArgs.result;
 };
 
@@ -1050,8 +1034,8 @@ lr.ww = function(){
 // The arguments received are the hard css properties that are to lineate between the two specified view port ranges.
 // With this method the lineation is based on viewport height
 lr.h = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPh,lr.LRPh);
-  var returnArgs = processArgs(arguments, "height");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPh,lr.LRPh);
+  var returnArgs = processArgs(fullFormArgs, "height");
   return returnArgs.result;
 };
 
@@ -1064,8 +1048,8 @@ lr.h = function(){
 // than the device height. The arguments sent are the hard css properties that lineate from one to the other between 
 // the two specified device-viewport ranges.
 lr.wh = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPh,lr.LRPh);
-  var returnArgs = processArgs(arguments, "windowHeight");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPh,lr.LRPh);
+  var returnArgs = processArgs(fullFormArgs, "windowHeight");
   return returnArgs.result;
 };
 
@@ -1074,63 +1058,62 @@ lr.wh = function(){
 // The arguments received are the hard css properties that are to lineate between two specified view port height to width ratios.
 // With this method the lineation is based on ratio of viewport height to viewport width.
 lr.r = function(){
-  
-  arguments = ArgConversionToLongFormGradient(arguments,lr.RP1r,lr.RP2r);
-  var returnArgs = processArgs(arguments, "ratio");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.RP1r,lr.RP2r);
+  var returnArgs = processArgs(fullFormArgs, "ratio");
   return returnArgs.result;
 };
 
 lr.wr = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.RP1r,lr.RP2r);
-  var returnArgs = processArgs(arguments, "windowRatio");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.RP1r,lr.RP2r);
+  var returnArgs = processArgs(fullFormArgs, "windowRatio");
   return returnArgs.result;
 };
 
 
-function ArgConversionToLongFormGradient(){
-  
+function ArgConversionToFullFormGradient(){
+  let argArgs         = arguments[0];
   let UpperRangePoint = arguments[1];
   let LowerRangePoint = arguments[2];
-  arguments = arguments[0];
   
-  if(arguments.length > 2){
-    if(arguments.length === 3){
+  
+  if(argArgs.length > 2){
+    if(argArgs.length === 3){
       var argArrayPlaceHolder = [];   
-      argArrayPlaceHolder[0] = arguments[0];
-      argArrayPlaceHolder[1] = arguments[1];
-      argArrayPlaceHolder[2] = arguments[2];
+      argArrayPlaceHolder[0] = argArgs[0];
+      argArrayPlaceHolder[1] = argArgs[1];
+      argArrayPlaceHolder[2] = argArgs[2];
 
-      arguments[0] = argArrayPlaceHolder[0];
-      arguments[1] = UpperRangePoint;
-      arguments[2] = argArrayPlaceHolder[1];
-      arguments[3] = LowerRangePoint;
-      arguments[4] = argArrayPlaceHolder[2];
-      arguments.length = 5;
+      argArgs[0] = argArrayPlaceHolder[0];
+      argArgs[1] = UpperRangePoint;
+      argArgs[2] = argArrayPlaceHolder[1];
+      argArgs[3] = LowerRangePoint;
+      argArgs[4] = argArrayPlaceHolder[2];
+      argArgs.length = 5;
     }  
     else {
       let argGroup = [];
         let argIndex = 2;
-        argGroup.push(arguments[0]);
+        argGroup.push(argArgs[0]);
         argGroup.push(UpperRangePoint);
-        argGroup.push(arguments[1]);
-        while(argIndex <= arguments.length-3){
-          argGroup.push(arguments[argIndex]);
-          argGroup.push(arguments[argIndex+1]);
-          argGroup.push(arguments[0]);
-          argGroup.push(arguments[argIndex]);
-          argGroup.push(arguments[argIndex+1]);
+        argGroup.push(argArgs[1]);
+        while(argIndex <= argArgs.length-3){
+          argGroup.push(argArgs[argIndex]);
+          argGroup.push(argArgs[argIndex+1]);
+          argGroup.push(argArgs[0]);
+          argGroup.push(argArgs[argIndex]);
+          argGroup.push(argArgs[argIndex+1]);
           argIndex += 2;
         }
-        argGroup.push(UpperRangePoint);
-        argGroup.push(arguments[arguments.length-1]);
+        argGroup.push(LowerRangePoint);
+        argGroup.push(argArgs[argArgs.length-1]);
 
         for(let i=0; i<argGroup.length; i++){
-          arguments[i] = argGroup[i];
+          argArgs[i] = argGroup[i];
         }
-        arguments.length = argGroup.length;
+        argArgs.length = argGroup.length;
     }
   }
-  return arguments;
+  return argArgs;
 }
 
 // HTML and CSS based response methods
@@ -1146,108 +1129,104 @@ function ArgConversionToLongFormGradient(){
 // is lr.wwhtml, whhtml, and wrhtml, needed?? Maybe not because these methods are not lineations. They are demarcations.
 
 lr.whtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  console.log("arguments is: " + JSON.stringify(arguments));
-  var returnHTMLCSS = processHTMLCSS(arguments, "width");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "width");
   return returnHTMLCSS.result;
 };
 lr.wwhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowWidth");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowWidth");
   return returnHTMLCSS.result;
 };
 lr.hhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "height");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "height");
   return returnHTMLCSS.result;
 };
 lr.whhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowHeight");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowHeight");
   return returnHTMLCSS.result;
 };
 lr.rhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "ratio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "ratio");
   return returnHTMLCSS.result;
 };
 lr.wrhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowRatio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowRatio");
   return returnHTMLCSS.result;
 };
 
 
 lr.wcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "width");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "width");
   return returnHTMLCSS.result;
 };
 lr.wwcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowWidth");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowWidth");
   return returnHTMLCSS.result;
 };
 lr.hcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "height");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "height");
   return returnHTMLCSS.result;
 };
 lr.whcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowHeight");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowHeight");
   return returnHTMLCSS.result;
 };
 lr.rcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "ratio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "ratio");
   return returnHTMLCSS.result;
 };
 lr.wrcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowRatio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowRatio");
   return returnHTMLCSS.result;
 };
 
-function ArgConversionToLongFormDemark(){
-  arguments = arguments[0];
-  console.log("Demark arguments is: " + JSON.stringify(arguments));
+function ArgConversionToFullFormDemark(){
+  let argArgs = arguments[0];
   let twoArg = true;
   let threeArg = [];
   
   // Test for even indexes having strings
-  for(let n = 0; n < arguments.length; n+=2){
-    if(isNaN(arguments[n])){}
+  for(let n = 0; n < argArgs.length; n+=2){
+    if(isNaN(argArgs[n])){}
     else{twoArg = false;};
   };
   
   // Test for odd indexes having numbers
-  for(let n = 1; n < arguments.length; n+=2){
-    if(!isNaN(arguments[n])){}
+  for(let n = 1; n < argArgs.length; n+=2){
+    if(!isNaN(argArgs[n])){}
     else{twoArg = false;};
   };
   
   // Convert to 3 arg format
   if(twoArg === true){
     let twoArgIndex = 1;
-    threeArg.push(arguments[0]);
+    threeArg.push(argArgs[0]);
     threeArg.push(100000);
-    while(twoArgIndex < arguments.length){
-      threeArg.push(arguments[twoArgIndex]);
-      threeArg.push(arguments[twoArgIndex+1]);
-      threeArg.push(arguments[twoArgIndex]);
+    while(twoArgIndex < argArgs.length){
+      threeArg.push(argArgs[twoArgIndex]);
+      threeArg.push(argArgs[twoArgIndex+1]);
+      threeArg.push(argArgs[twoArgIndex]);
       twoArgIndex += 2;
     }
     threeArg.push(0);
     
     for(let i=0; i<threeArg.length; i++){
-      arguments[i] = threeArg[i];
+      argArgs[i] = threeArg[i];
     }
-    arguments.length = threeArg.length;
+    argArgs.length = threeArg.length;
   }
-  return arguments;
+  return argArgs;
 };
 
-
-
-// https://stackoverflow.com/questions/6843951/which-way-is-best-for-creating-an-object-in-javascript-is-var-necessary-befor
+export {lr};

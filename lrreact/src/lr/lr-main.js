@@ -1,6 +1,4 @@
- 
-
-
+"use strict" 
 //***********************************************************************************************************************************************************
 // lr.to Console method:
 // The lr.toConsole method outputs all vital view port settings to the console. 
@@ -113,37 +111,37 @@ lr.eval = function(){
 
 
 
-lr.wFiveArg = function(){
+lr.wFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "width");
   return returnArgs.result;
 };
 
-lr.wwFiveArg = function(){
+lr.wwFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "windowWidth");
   return returnArgs.result;
 };
 
-lr.hFiveArg = function(){
+lr.hFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "height");
   return returnArgs.result;
 };
 
-lr.whFiveArg = function(){
+lr.whFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "windowHeight");
   return returnArgs.result;
 };
 
-lr.rFiveArg = function(){
+lr.rFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "ratio");
   return returnArgs.result;
 };
 
-lr.wrFiveArg = function(){
+lr.wrFullForm = function(){
   console.log("arguments is: " + JSON.stringify(arguments));
   var returnArgs = processArgs(arguments, "windowRatio");
   return returnArgs.result;
@@ -171,16 +169,12 @@ lr.wrFiveArg = function(){
 // has been upgraded to a new streamlined version for the user. 
 // Case in point: There is now a 3-arg method and a 3-arg + 2n argument method.
 // A few more tests and this code work will be ready for production.
+let fullFormArgs;
 lr.w = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPw,lr.LRPw);
-  var returnArgs = processArgs(arguments, "width");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPw,lr.LRPw);
+  var returnArgs = processArgs(fullFormArgs, "width");
   return returnArgs.result;
 };
-
-lr.wLong = function(){};
-lr.wFull = function(){};
-lr.w5    = function(){};
-lr.w5arg = function(){};
 
 
 //***********************************************************************************************************************************************************
@@ -192,8 +186,8 @@ lr.w5arg = function(){};
 // than the device width. The arguments sent are the hard css properties that lineate from one to the other between 
 // the two specified device-viewport ranges.
 lr.ww = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPw,lr.LRPw);
-  var returnArgs = processArgs(arguments, "windowWidth");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPw,lr.LRPw);
+  var returnArgs = processArgs(fullFormArgs, "windowWidth");
   return returnArgs.result;
 };
 
@@ -202,8 +196,8 @@ lr.ww = function(){
 // The arguments received are the hard css properties that are to lineate between the two specified view port ranges.
 // With this method the lineation is based on viewport height
 lr.h = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPh,lr.LRPh);
-  var returnArgs = processArgs(arguments, "height");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPh,lr.LRPh);
+  var returnArgs = processArgs(fullFormArgs, "height");
   return returnArgs.result;
 };
 
@@ -216,8 +210,8 @@ lr.h = function(){
 // than the device height. The arguments sent are the hard css properties that lineate from one to the other between 
 // the two specified device-viewport ranges.
 lr.wh = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.URPh,lr.LRPh);
-  var returnArgs = processArgs(arguments, "windowHeight");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.URPh,lr.LRPh);
+  var returnArgs = processArgs(fullFormArgs, "windowHeight");
   return returnArgs.result;
 };
 
@@ -226,63 +220,63 @@ lr.wh = function(){
 // The arguments received are the hard css properties that are to lineate between two specified view port height to width ratios.
 // With this method the lineation is based on ratio of viewport height to viewport width.
 lr.r = function(){
-  
-  arguments = ArgConversionToLongFormGradient(arguments,lr.RP1r,lr.RP2r);
-  var returnArgs = processArgs(arguments, "ratio");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.RP1r,lr.RP2r);
+  var returnArgs = processArgs(fullFormArgs, "ratio");
   return returnArgs.result;
 };
 
 lr.wr = function(){
-  arguments = ArgConversionToLongFormGradient(arguments,lr.RP1r,lr.RP2r);
-  var returnArgs = processArgs(arguments, "windowRatio");
+  fullFormArgs = ArgConversionToFullFormGradient(arguments,lr.RP1r,lr.RP2r);
+  var returnArgs = processArgs(fullFormArgs, "windowRatio");
   return returnArgs.result;
 };
 
 
-function ArgConversionToLongFormGradient(){
-  
+function ArgConversionToFullFormGradient(){
+  let argArgs         = arguments[0];
   let UpperRangePoint = arguments[1];
   let LowerRangePoint = arguments[2];
-  arguments = arguments[0];
   
-  if(arguments.length > 2){
-    if(arguments.length === 3){
+  
+  if(argArgs.length > 2){
+    if(argArgs.length === 3){
       var argArrayPlaceHolder = [];   
-      argArrayPlaceHolder[0] = arguments[0];
-      argArrayPlaceHolder[1] = arguments[1];
-      argArrayPlaceHolder[2] = arguments[2];
+      argArrayPlaceHolder[0] = argArgs[0];
+      argArrayPlaceHolder[1] = argArgs[1];
+      argArrayPlaceHolder[2] = argArgs[2];
 
-      arguments[0] = argArrayPlaceHolder[0];
-      arguments[1] = UpperRangePoint;
-      arguments[2] = argArrayPlaceHolder[1];
-      arguments[3] = LowerRangePoint;
-      arguments[4] = argArrayPlaceHolder[2];
-      arguments.length = 5;
+      argArgs[0] = argArrayPlaceHolder[0];
+      argArgs[1] = UpperRangePoint;
+      argArgs[2] = argArrayPlaceHolder[1];
+      argArgs[3] = LowerRangePoint;
+      argArgs[4] = argArrayPlaceHolder[2];
+      argArgs.length = 5;
+      console.log("argArgs in conversion is: " + JSON.stringify(argArgs));
     }  
     else {
       let argGroup = [];
         let argIndex = 2;
-        argGroup.push(arguments[0]);
+        argGroup.push(argArgs[0]);
         argGroup.push(UpperRangePoint);
-        argGroup.push(arguments[1]);
-        while(argIndex <= arguments.length-3){
-          argGroup.push(arguments[argIndex]);
-          argGroup.push(arguments[argIndex+1]);
-          argGroup.push(arguments[0]);
-          argGroup.push(arguments[argIndex]);
-          argGroup.push(arguments[argIndex+1]);
+        argGroup.push(argArgs[1]);
+        while(argIndex <= argArgs.length-3){
+          argGroup.push(argArgs[argIndex]);
+          argGroup.push(argArgs[argIndex+1]);
+          argGroup.push(argArgs[0]);
+          argGroup.push(argArgs[argIndex]);
+          argGroup.push(argArgs[argIndex+1]);
           argIndex += 2;
         }
-        argGroup.push(UpperRangePoint);
-        argGroup.push(arguments[arguments.length-1]);
+        argGroup.push(LowerRangePoint);
+        argGroup.push(argArgs[argArgs.length-1]);
 
         for(let i=0; i<argGroup.length; i++){
-          arguments[i] = argGroup[i];
+          argArgs[i] = argGroup[i];
         }
-        arguments.length = argGroup.length;
+        argArgs.length = argGroup.length;
     }
   }
-  return arguments;
+  return argArgs;
 }
 
 // HTML and CSS based response methods
@@ -298,106 +292,104 @@ function ArgConversionToLongFormGradient(){
 // is lr.wwhtml, whhtml, and wrhtml, needed?? Maybe not because these methods are not lineations. They are demarcations.
 
 lr.whtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  console.log("arguments is: " + JSON.stringify(arguments));
-  var returnHTMLCSS = processHTMLCSS(arguments, "width");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "width");
   return returnHTMLCSS.result;
 };
 lr.wwhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowWidth");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowWidth");
   return returnHTMLCSS.result;
 };
 lr.hhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "height");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "height");
   return returnHTMLCSS.result;
 };
 lr.whhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowHeight");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowHeight");
   return returnHTMLCSS.result;
 };
 lr.rhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "ratio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "ratio");
   return returnHTMLCSS.result;
 };
 lr.wrhtml = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowRatio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowRatio");
   return returnHTMLCSS.result;
 };
 
 
 lr.wcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "width");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "width");
   return returnHTMLCSS.result;
 };
 lr.wwcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowWidth");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowWidth");
   return returnHTMLCSS.result;
 };
 lr.hcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "height");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "height");
   return returnHTMLCSS.result;
 };
 lr.whcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowHeight");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowHeight");
   return returnHTMLCSS.result;
 };
 lr.rcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "ratio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "ratio");
   return returnHTMLCSS.result;
 };
 lr.wrcss = function(){
-  arguments = ArgConversionToLongFormDemark(arguments);
-  var returnHTMLCSS = processHTMLCSS(arguments, "windowRatio");
+  fullFormArgs = ArgConversionToFullFormDemark(arguments);
+  var returnHTMLCSS = processHTMLCSS(fullFormArgs, "windowRatio");
   return returnHTMLCSS.result;
 };
 
-function ArgConversionToLongFormDemark(){
-  arguments = arguments[0];
-  console.log("Demark arguments is: " + JSON.stringify(arguments));
+function ArgConversionToFullFormDemark(){
+  let argArgs = arguments[0];
   let twoArg = true;
   let threeArg = [];
   
   // Test for even indexes having strings
-  for(let n = 0; n < arguments.length; n+=2){
-    if(isNaN(arguments[n])){}
+  for(let n = 0; n < argArgs.length; n+=2){
+    if(isNaN(argArgs[n])){}
     else{twoArg = false;};
   };
   
   // Test for odd indexes having numbers
-  for(let n = 1; n < arguments.length; n+=2){
-    if(!isNaN(arguments[n])){}
+  for(let n = 1; n < argArgs.length; n+=2){
+    if(!isNaN(argArgs[n])){}
     else{twoArg = false;};
   };
   
   // Convert to 3 arg format
   if(twoArg === true){
     let twoArgIndex = 1;
-    threeArg.push(arguments[0]);
+    threeArg.push(argArgs[0]);
     threeArg.push(100000);
-    while(twoArgIndex < arguments.length){
-      threeArg.push(arguments[twoArgIndex]);
-      threeArg.push(arguments[twoArgIndex+1]);
-      threeArg.push(arguments[twoArgIndex]);
+    while(twoArgIndex < argArgs.length){
+      threeArg.push(argArgs[twoArgIndex]);
+      threeArg.push(argArgs[twoArgIndex+1]);
+      threeArg.push(argArgs[twoArgIndex]);
       twoArgIndex += 2;
     }
     threeArg.push(0);
     
     for(let i=0; i<threeArg.length; i++){
-      arguments[i] = threeArg[i];
+      argArgs[i] = threeArg[i];
     }
-    arguments.length = threeArg.length;
+    argArgs.length = threeArg.length;
   }
-  return arguments;
+  return argArgs;
 };
 
 

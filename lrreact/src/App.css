@@ -1,3 +1,7 @@
+@font-face {font-family: "Arial Rounded MT Bold"; src: url(fonts/ARLRDBD_0.TTF);}
+@font-face {font-family: "Draper"; src: url(fonts/Draper.woff);}    
+
+
 .App {
   text-align: center;
   color:red;
