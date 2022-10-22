@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+//import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import App from './App';
-import Truck from './LR-What-Is-Section';
+
+import Truck from './Truck';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root1'));
 root.render(
     <App />
 );
