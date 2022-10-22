@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
 import App from './App';
+import Truck from './LR-What-Is-Section';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,7 +14,7 @@ root.render(
 
 const root2 = ReactDOM.createRoot(document.getElementById('root2'));
 root2.render(
-    <App />
+    <Truck />
 );
 
 // If you want to start measuring performance in your app, pass a function
