@@ -28,12 +28,12 @@ import { useState } from "react";
 
 
 
-function Car() {
-  const [car, setCar] = useState({
-    brand: "Ford",
-    model: "Mustang",
-    year: "1964",
-    color: "red",
+function Truck() {
+  const [truck, setTruck] = useState({
+    brand: "GMC",
+    model: "Sierra",
+    year: "2022",
+    color: "desert gray",
     whodat1: lrTestFunc1(),
     whodat2: lrTestFunc2(),
     whodat3: lrTestObject.a,
@@ -41,8 +41,8 @@ function Car() {
   });
 
   const updateColor = () => {
-    setCar(preState => {
-      return { ...preState, color: "blue", whodat3: lrTestFunc1(2),  };
+    setTruck(preState => {
+      return { ...preState, color: "desert orange", whodat3: lrTestFunc1(2),  };
     });
 //    setCar(preState => {
 //      return { ...preState}});
@@ -83,14 +83,14 @@ function Car() {
       </div>
       
       
-      <h1>My {car.brand}</h1>
+      <h1>My {truck.brand}</h1>
       <p>
-        It is a {car.color} {car.model} from {car.year} and is very {car.whodat1} and {car.whodat2} and lastly {car.whodat3} but there's more: {car.whodat4}
+        It is a {truck.color} {truck.model} from {truck.year} and is very {truck.whodat1} and {truck.whodat2} and lastly {truck.whodat3} but there's more: {truck.whodat4}
       </p>
       <button
         type="button"
         onClick={updateColor}
-      >Blue</button>
+      >Desert Orange</button>
               
     <div  className="" 
           id="titling" 
@@ -133,4 +133,4 @@ function Car() {
 //document.getElementById("titling").style.width = lr.w("%",55,100);
 //document.getElementById("titling").style.fontSize = lr.w("em",1.35,0.9);    
 
-export default Car;
+export default Truck;
