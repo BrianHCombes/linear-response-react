@@ -5,7 +5,7 @@
 
 import React from 'react';
 //import logo from './logo.svg';
-import './App.css';
+import './Car.css';
 
 
 import {lrTestFunc1, lrTestFunc2, lrTestObject} from './lr-test.js';
