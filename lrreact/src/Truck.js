@@ -42,7 +42,7 @@ function Truck() {
 
   const updateColor = () => {
     setTruck(preState => {
-      return { ...preState, color: "desert orange", whodat3: lrTestFunc1(2),  };
+      return { ...preState, color: "desert orange", whodat3: lrTestFunc1(2)};
     });
 //    setCar(preState => {
 //      return { ...preState}});
@@ -101,7 +101,7 @@ function Truck() {
                   backgroundColor:'#bbbbbb',
                   border:'2px solid white', 
                   borderRadius:'0.75em', 
-                  fontFamily: 'Arial Rounded MT Bold',
+                  fontFamily: 'Arial Rounded MT Bold'
                   /*fontFamily:'Tahoma'*/
                 }}>
       <div style={{textAlign:'center'}}>
@@ -128,7 +128,7 @@ function Truck() {
       </div>  
     </div>  
     </React.StrictMode>
-  )
+  );
 }
 //document.getElementById("titling").style.width = lr.w("%",55,100);
 //document.getElementById("titling").style.fontSize = lr.w("em",1.35,0.9);    
