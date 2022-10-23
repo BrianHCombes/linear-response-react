@@ -849,57 +849,57 @@ lr.toConsole = function(sectionTitle){
   console.log("%c******************************************************************","color:blue");
   
   console.log("%c▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼","color:#cc33ff; font-size:2.0em;");
-  console.log("%c➥ " + "%cDevice width:                       " + 
+  console.log("%c➥ %cDevice width:                       " + 
               "%c" + lr.getLRp().lrDeviceWidth, "color:#cc33ff; font-size:1.2em", "color:black", "color:#cc33ff; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cDevice width property used:         " + 
+  console.log("%c➥ %cDevice width property used:         " + 
               "%c" + lr.getLRp().lrDeviceWidthPropertyApplied, "color:#cc33ff; font-size:1.2em", "color:black", "color:#cc33ff; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cDevice height:                      " + 
+  console.log("%c➥ %cDevice height:                      " + 
               "%c" + lr.getLRp().lrDeviceHeight, "color:#cc33ff; font-size:1.2em", "color:black", "color:#cc33ff; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cDevice height property used:        " + 
+  console.log("%c➥ %cDevice height property used:        " + 
               "%c" + lr.getLRp().lrDeviceHeightPropertyApplied, "color:#cc33ff; font-size:1.2em", "color:black", "color:#cc33ff; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cDevice height/width ratio:          " + 
+  console.log("%c➥ %cDevice height/width ratio:          " + 
               "%c" + lr.getLRp().lrDeviceRatio, "color:#cc33ff; font-size:1.2em", "color:black", "color:#cc33ff; font-weight:bold; font-size:1.2em;");
   
   console.log("%c▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼","color:red; font-size:2.0em;");
-  console.log("%c➥ " + "%cWindow width:                       " + 
+  console.log("%c➥ %cWindow width:                       " + 
               "%c" + lr.getLRp().windowWidth, "color:#ff4000; font-size:1.2em", "color:black", "color:#ff4000; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cWindow width property used:         " + 
+  console.log("%c➥ %cWindow width property used:         " + 
               "%c" + lr.getLRp().windowWidthPropertyApplied, "color:#ff4000; font-size:1.2em", "color:black", "color:#ff4000; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cWindow Height:                      " + 
+  console.log("%c➥ %cWindow Height:                      " + 
               "%c" + lr.getLRp().windowHeight, "color:#ff4000; font-size:1.2em", "color:black", "color:#ff4000; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cWindow Height property used:        " + 
+  console.log("%c➥ %cWindow Height property used:        " + 
               "%c" + lr.getLRp().windowHeightPropertyApplied, "color:#ff4000; font-size:1.2em", "color:black", "color:#ff4000; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cWindow height/width ratio:          " + 
+  console.log("%c➥ %cWindow height/width ratio:          " + 
               "%c" + lr.getLRp().windowRatio, "color:#ff4000; font-size:1.2em", "color:black", "color:#ff4000; font-weight:bold; font-size:1.2em;");
   
   console.log("%c▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼","color:blue; font-size:2.0em;");
-  console.log("%c➥ " + "%cLR viewport width:                  " + 
+  console.log("%c➥ %cLR viewport width:                  " + 
               "%c" + lr.getLRp().vpWidth, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR viewport max width:              " + 
+  console.log("%c➥ %cLR viewport max width:              " + 
               "%c" + lr.getLRp().vpMaxWidth, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR viewport width property used:    " +
+  console.log("%c➥ %cLR viewport width property used:    " +
               "%c" + lr.getLRp().vpWidthPropertyApplied, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR viewport height:                 " + 
+  console.log("%c➥ %cLR viewport height:                 " + 
               "%c" + lr.getLRp().vpHeight, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR viewport max height:             " + 
+  console.log("%c➥ %cLR viewport max height:             " + 
               "%c" + lr.getLRp().vpMaxHeight, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR viewport height property used:   " + 
+  console.log("%c➥ %cLR viewport height property used:   " + 
               "%c" + lr.getLRp().vpHeightPropertyApplied, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR viewport height/width ratio:     " + 
+  console.log("%c➥ %cLR viewport height/width ratio:     " + 
               "%c" + lr.getLRp().vpRatio, "color:blue; font-size:1.2em", "color:black", "color:blue; font-weight:bold; font-size:1.2em;");
   
   console.log("%c▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼ ▼","color:#339933; font-size:2.0em;");
-  console.log("%c➥ " + "%cLR range - upper point width:       " + 
+  console.log("%c➥ %cLR range - upper point width:       " + 
               "%c" + lr.URPw, "color:#339933; font-size:1.2em;", "color:black", "color:#339933; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR range - lower point width:       " + 
+  console.log("%c➥ %cLR range - lower point width:       " + 
               "%c" + lr.LRPw, "color:#339933; font-size:1.2em", "color:black", "color:#339933; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR range - upper point height:      " + 
+  console.log("%c➥ %cLR range - upper point height:      " + 
               "%c" + lr.URPh, "color:#339933; font-size:1.2em", "color:black", "color:#339933; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR range - lower point height:      " + 
+  console.log("%c➥ %cLR range - lower point height:      " + 
               "%c" + lr.LRPh, "color:#339933; font-size:1.2em", "color:black", "color:#339933; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR range - point 1 (h/w) ratio:     " + 
+  console.log("%c➥ %cLR range - point 1 (h/w) ratio:     " + 
               "%c" + lr.RP1r, "color:#339933; font-size:1.2em", "color:black", "color:#339933; font-weight:bold; font-size:1.2em;");
-  console.log("%c➥ " + "%cLR range - point 2 (h/w) ratio:     " + 
+  console.log("%c➥ %cLR range - point 2 (h/w) ratio:     " + 
               "%c" + lr.RP2r, "color:#339933; font-size:1.2em", "color:black", "color:#339933; font-weight:bold; font-size:1.2em;");    
   
   console.log("%c******************************************************************","color:blue");
