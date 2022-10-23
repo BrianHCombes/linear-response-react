@@ -6,4 +6,4 @@ This is the Linear Response API specification written in reactJS to be viewed in
 
 *Note: I picked up the ReactJS basics very quickly but as I convert what I already started in basic HTML, JS, and CSS to ReactJS I expect many learning moments along the way. But that's the fun part.*
 
-
+*As of 10/23/2022 have established page routing to link the menu options to the various specification content.*
