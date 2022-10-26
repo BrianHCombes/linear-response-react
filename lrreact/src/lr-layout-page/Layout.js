@@ -8,34 +8,42 @@ import {lr} from '../lr/lr-single.js';
 import './Layout.css';
 
 
+// Component Layout
+function Layout(){
 
-function update(){
-    window.setTimeout(getURL,1000);
+ const [page, setURL] = useState({
+    brand: "Ford",
+    model: "Mustang",
+    year: "1964",
+    url: "red",
+    pageName: "welcome"
+  });
+
+  function getURL(){
+    window.setTimeout(URLfunc,100);
     
-    //let URL;
+    function URLfunc(){
+      setURL(preState => {
+        
+        let url = window.location.href;
+        let lastSlash = url.lastIndexOf("/");
+        console.log("index of lastSlash is: " + lastSlash);
+        
+        let page = url.substring(lastSlash+1);
+        if(page === "") page = "welcome";
+        console.log("page is: " + page);
+        
+        
+        
+        return { ...preState, url:window.location.href, pageName:page };
+
+      });
+    }  
     
-    function getURL(){ 
-                                  //URL = window.location.href;
-                                  console.log("window.location.href is: " + window.location.href);
-                                 };
-    //console.log("URL is: " + URL);  
-    
-    
-    }
+  };
 
 
-
-const Layout = () => {
-  
-//  let test1 = lr.whtml(titleBanner01,1000,titleBanner02);
-//  console.log("test is: " + test1);
-  
-  
- 
-  
-  
-  
-  return (
+return (
     <div>     
         
       <div style={{textAlign:'center'}}>
@@ -50,33 +58,30 @@ const Layout = () => {
         </img>
       </div><br />    
 
-      
       <div style={{color:'white'}}>{}</div>  
-        
+      <div style={{color:'white'}}>The loaded component url is: {page.url}</div>  
+      <div style={{color:'white'}}>The page name is: {page.pageName}</div>    
         
         
       <div style={{textAlign:"center"}}> 
         <div>
-        <Link to="/"><button className="btnHover" style={{backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em'}}>Welcome</button></Link>
+        <Link to="/"><button className="btnHover" onClick={getURL} style={{backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em'}}>Welcome</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/methods" onClick={() => update()}><button>Methods</button></Link>
-                                                    
-                                                    
+          <Link to="/methods" onClick={getURL}><button>Methods</button></Link>
                                                     
           &nbsp;&nbsp;&nbsp;
-          <Link to="/explained"><button>Explained</button></Link>
+          <Link to="/explained" onClick={getURL}><button>Explained</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/about"><button>About</button></Link>
+          <Link to="/about" onClick={getURL}><button>About</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/default"><button>Default</button></Link> 
+          <Link to="/default" onClick={getURL}><button>Default</button></Link> 
           &nbsp;&nbsp;&nbsp;
-          <Link to="/starting"><button>Starting</button></Link>
+          <Link to="/starting" onClick={getURL}><button>Starting</button></Link>
         </div>
       </div>
-      <div style={{color:'white'}}>{window.location.href}</div>
       <Outlet />
     </div>
-  );
+);
   
 };
 
