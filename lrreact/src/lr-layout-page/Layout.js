@@ -11,37 +11,56 @@ import './Layout.css';
 // Component Layout
 function Layout(){
 
- const [page, setURL] = useState({
-    brand: "Ford",
-    model: "Mustang",
-    year: "1964",
-    url: "red",
-    pageName: "welcome"
+ 
+ // Highlight selected page
+ let noHighlightCSS = {};
+ let highlightCSS = { backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em' };
+ 
+ const [pageHighlight, setHighlight] = useState({
+    welcomeHighlight: "true",
+    methodsHighlight: "false",
+    explainedHighlight: "false",
+    aboutHighlight: "false",
+    defaultHighlight: "false",
+    startingHighlight: "false"
   });
-
+  
+  let highlightValues = {};
   function getURL(){
-    window.setTimeout(URLfunc,100);
+    window.setTimeout(URLfunc,1);
     
     function URLfunc(){
-      setURL(preState => {
+      setHighlight(() => {
         
         let url = window.location.href;
         let lastSlash = url.lastIndexOf("/");
-        console.log("index of lastSlash is: " + lastSlash);
-        
         let page = url.substring(lastSlash+1);
         if(page === "") page = "welcome";
-        console.log("page is: " + page);
         
+        highlightValues = { 
+                            welcomeHighlight:  "false", methodsHighlight: "false", 
+                            explainedHighlight:"false", aboutHighlight:   "false", 
+                            defaultHighlight:  "false", startingHighlight:"false"
+                          };
         
+        switch(page){
+          case "welcome":   highlightValues.welcomeHighlight   = "true";   break;
+          case "methods":   highlightValues.methodsHighlight   = "true";   break;
+          case "explained": highlightValues.explainedHighlight = "true";   break;
+          case "about":     highlightValues.aboutHighlight     = "true";   break;
+          case "default":   highlightValues.defaultHighlight   = "true";   break;
+          case "starting":  highlightValues.startingHighlight  = "true";   break;  
+          default:
+        }
         
-        return { ...preState, url:window.location.href, pageName:page };
-
+        return { ...highlightValues };
       });
     }  
-    
   };
-
+  
+  
+  let methodStyle = { backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em' };  
+  //let methodStyle = {};  
 
 return (
     <div>     
@@ -58,9 +77,16 @@ return (
         </img>
       </div><br />    
 
-      <div style={{color:'white'}}>{}</div>  
-      <div style={{color:'white'}}>The loaded component url is: {page.url}</div>  
-      <div style={{color:'white'}}>The page name is: {page.pageName}</div>    
+      <div style={{color:'white'}}> welcomeHighlight is: {pageHighlight.welcomeHighlight}<br />
+                                    methodsHighlight is: {pageHighlight.methodsHighlight}<br />
+                                    explainedHighlight is: {pageHighlight.explainedHighlight}<br />
+                                    aboutHighlight is: {pageHighlight.aboutHighlight}<br />
+                                    defaultHighlight is: {pageHighlight.defaultHighlight}<br />
+                                    startingHighlight is: {pageHighlight.startingHighlight}<br /><br />
+                                    
+      </div>  
+        
+      
         
         
       <div style={{textAlign:"center"}}> 
@@ -70,7 +96,7 @@ return (
           <Link to="/methods" onClick={getURL}><button>Methods</button></Link>
                                                     
           &nbsp;&nbsp;&nbsp;
-          <Link to="/explained" onClick={getURL}><button>Explained</button></Link>
+          <Link to="/explained" onClick={getURL}><button style={methodStyle}>Explained</button></Link>
           &nbsp;&nbsp;&nbsp;
           <Link to="/about" onClick={getURL}><button>About</button></Link>
           &nbsp;&nbsp;&nbsp;
