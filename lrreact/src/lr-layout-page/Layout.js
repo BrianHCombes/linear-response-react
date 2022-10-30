@@ -7,25 +7,32 @@ import titleBanner02 from '../images/lr-title-banner_02.jpg';
 import {lr} from '../lr/lr-single.js';
 import './Layout.css';
 
+let noHighlightCSS = {};
+let highlightCSS = { backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em' };
 
 // Component Layout
 function Layout(){
 
  
  // Highlight selected page
- let noHighlightCSS = {};
- let highlightCSS = { backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em' };
+ let highlightValues = {};
+ //let yesHighlight = { backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em' };  
+ //let noHighlight = {backgroundColor:'transparent'};  
+// let welcomeHighlightValue = {};
+// let aboutHighlightValue = {};
+// let hhValue = 0;
  
- const [pageHighlight, setHighlight] = useState({
-    welcomeHighlight: "true",
-    methodsHighlight: "false",
-    explainedHighlight: "false",
-    aboutHighlight: "false",
-    defaultHighlight: "false",
-    startingHighlight: "false"
+  const [pageHighlight, setHighlight] = useState({
+    welcomeHighlight:   "yesHighlight",
+    methodsHighlight:   "noHighlight",
+    explainedHighlight: "noHighlight",
+    aboutHighlight:     "noHighlight",
+    defaultHighlight:   "noHighlight",
+    startingHighlight:  "noHighlight"
   });
   
-  let highlightValues = {};
+  
+  
   function getURL(){
     window.setTimeout(URLfunc,1);
     
@@ -38,18 +45,18 @@ function Layout(){
         if(page === "") page = "welcome";
         
         highlightValues = { 
-                            welcomeHighlight:  "false", methodsHighlight: "false", 
-                            explainedHighlight:"false", aboutHighlight:   "false", 
-                            defaultHighlight:  "false", startingHighlight:"false"
+                            welcomeHighlight:  "noHighlight", methodsHighlight: "noHighlight", 
+                            explainedHighlight:"noHighlight",  aboutHighlight:   "noHighlight", 
+                            defaultHighlight:  "noHighlight",  startingHighlight:"noHighlight"
                           };
         
         switch(page){
-          case "welcome":   highlightValues.welcomeHighlight   = "true";   break;
-          case "methods":   highlightValues.methodsHighlight   = "true";   break;
-          case "explained": highlightValues.explainedHighlight = "true";   break;
-          case "about":     highlightValues.aboutHighlight     = "true";   break;
-          case "default":   highlightValues.defaultHighlight   = "true";   break;
-          case "starting":  highlightValues.startingHighlight  = "true";   break;  
+          case "welcome":   highlightValues.welcomeHighlight   = "yesHighlight";   break;
+          case "methods":   highlightValues.methodsHighlight   = "yesHighlight";   break;
+          case "explained": highlightValues.explainedHighlight = "yesHighlight";   break;
+          case "about":     highlightValues.aboutHighlight     = "yesHighlight";   break;
+          case "default":   highlightValues.defaultHighlight   = "yesHighlight";   break;
+          case "starting":  highlightValues.startingHighlight  = "yesHighlight";   break;  
           default:
         }
         
@@ -58,9 +65,7 @@ function Layout(){
     }  
   };
   
-  
-  let methodStyle = { backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em' };  
-  //let methodStyle = {};  
+ 
 
 return (
     <div>     
@@ -86,23 +91,19 @@ return (
                                     
       </div>  
         
-      
-        
-        
       <div style={{textAlign:"center"}}> 
         <div>
-        <Link to="/"><button className="btnHover" onClick={getURL} style={{backgroundColor:'yellow', padding:'0.2%', borderRadius:'0.3em'}}>Welcome</button></Link>
+        <Link to="/"><button className="btnHover {pageHighlight.welcomeHighlight}" onClick={getURL}>Welcome</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/methods" onClick={getURL}><button>Methods</button></Link>
-                                                    
+          <Link to="/methods"><button className="btnHover {pageHighlight.methodsHighlight}" onClick={getURL}>Methods</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/explained" onClick={getURL}><button style={methodStyle}>Explained</button></Link>
+          <Link to="/explained"><button className="btnHover {pageHighlight.explainedHighlight}" onClick={getURL}>Explained</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/about" onClick={getURL}><button>About</button></Link>
+          <Link to="/about"><button className="btnHover yesHighlight" onClick={getURL}>About {pageHighlight.aboutHighlight}</button></Link>
           &nbsp;&nbsp;&nbsp;
-          <Link to="/default" onClick={getURL}><button>Default</button></Link> 
+          <Link to="/default"><button className="btnHover {pageHighlight.defaultHighlight}" onClick={getURL}>Default</button></Link> 
           &nbsp;&nbsp;&nbsp;
-          <Link to="/starting" onClick={getURL}><button>Starting</button></Link>
+          <Link to="/starting"><button className="btnHover {pageHighlight.startingHighlight}" onClick={getURL}>Starting</button></Link>
         </div>
       </div>
       <Outlet />

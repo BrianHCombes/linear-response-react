@@ -4,3 +4,17 @@
 {
 background-color:yellow;  
 }
+
+.yesHighlight
+{ 
+background-color:yellow;
+padding:0.2%;
+border-radius:0.3em
+}; 
+
+.noHighlight
+{ 
+background-color:transparent;
+padding:0.2%;
+border-radius:0.3em
+}; 
