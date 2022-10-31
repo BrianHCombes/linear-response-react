@@ -48,6 +48,34 @@ function Welcome(){
           </ul>
         </div>  
       </div>  
+      
+      <div style={{padding:'0 2% 0 3%'}}>
+        LR is a supplemental tool for designing the responsive behavior of web pages across all screen sizes. 
+        <ul style={{paddingLeft:'5%'}}>
+          <li style={{textAlign:'left'}}>
+            LR uses standard Javascript and works with all CSS and frontend frameworks.
+          </li>
+          <li style={{textAlign:'left'}}>
+            LR is not a framework and won't interfere with your responsive design approach. 
+            However, should traditional approaches falter, LR can be called upon.
+          </li>
+          <li>
+            LR works by doing proportional lineation between two defined points. This provides pixel precision 
+            sizing on any given screen allowing for optimum screen usage.
+          </li>
+          <li>
+            LR can (technically) be used exclusively for all responsive behavior.
+          </li>
+          <li>
+            LR is arguably easier to use than traditional methods with its relatively small API.
+          </li>
+        </ul>
+      </div>  
+      
+      
+      
+      
+      
     </React.StrictMode>
     
     

@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
-import Car from './Car';
-import Truck from './Truck';
 import reportWebVitals from './reportWebVitals';
 
 import Layout from './lr-layout-page/Layout';
@@ -14,10 +12,10 @@ import About from './lr-pages/About';
 import Default from './lr-pages/Default';
 import Starting from './lr-pages/Starting';
 
-const root = ReactDOM.createRoot(document.getElementById('root1'));
-root.render(
-    <Car />
-);
+//const root = ReactDOM.createRoot(document.getElementById('root1'));
+//root.render(
+//    <Car />
+//);
 
 //const root2 = ReactDOM.createRoot(document.getElementById('root2'));
 //root2.render(
@@ -43,8 +41,8 @@ export default function PageRouter() {
   );
 }
 
-const root3 = ReactDOM.createRoot(document.getElementById('root3'));
-root3.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
     <PageRouter />
 );
 
