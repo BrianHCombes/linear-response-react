@@ -19,6 +19,9 @@ function Layout(){
     startingHighlight:  "noHighlight"
   });
   
+        
+  
+  
   const changeHighlight = (selected) => {
       
         let highlightValues = {
@@ -40,6 +43,8 @@ function Layout(){
           default: console.log("404");
         }
         
+        
+        
         setHighlight(highlightValues); 
       };
  
@@ -56,17 +61,12 @@ return (
         
       <div style={{textAlign:"center"}}> 
         <div>
-        <Link to="/"><button className={'btnHover ' + pageHighlight.welcomeHighlight} onClick={() => changeHighlight("welcome")}>Welcome</button></Link>
-          &nbsp;&nbsp;&nbsp;
-          <Link to="/methods"><button className={'btnHover ' + pageHighlight.methodsHighlight} onClick={() => changeHighlight("methods")}>Methods</button></Link>
-          &nbsp;&nbsp;&nbsp;
-          <Link to="/explained"><button className={'btnHover ' + pageHighlight.explainedHighlight} onClick={() => changeHighlight("explained")}>Explained</button></Link>
-          &nbsp;&nbsp;&nbsp;
-          <Link to="/about"><button className={'btnHover ' +  pageHighlight.aboutHighlight} onClick={() => changeHighlight("about")}>About</button></Link>
-          &nbsp;&nbsp;&nbsp;
-          <Link to="/default"><button className={'btnHover ' + pageHighlight.defaultHighlight} onClick={() => changeHighlight("default")}>Default</button></Link> 
-          &nbsp;&nbsp;&nbsp;
-          <Link to="/starting"><button className={'btnHover ' + pageHighlight.startingHighlight} onClick={() => changeHighlight("starting")}>Starting</button></Link>
+          <Link to="/"><button className={'btnHover ' + pageHighlight.welcomeHighlight} onClick={() => changeHighlight("welcome")} style={{fontSize:'1.25em'}}>Welcome</button></Link>
+          <Link to="/default"><button className={'btnHover ' + pageHighlight.defaultHighlight} onClick={() => changeHighlight("default")} style={{fontSize:'1.25em'}}>Default Settings</button></Link> 
+          <Link to="/methods"><button className={'btnHover ' + pageHighlight.methodsHighlight} onClick={() => changeHighlight("methods")} style={{fontSize:'1.25em'}}>Methods</button></Link>
+          <Link to="/explained"><button className={'btnHover ' + pageHighlight.explainedHighlight} onClick={() => changeHighlight("explained")} style={{fontSize:'1.25em'}}>How it Works</button></Link>
+          <Link to="/starting"><button className={'btnHover ' + pageHighlight.startingHighlight} onClick={() => changeHighlight("starting")} style={{fontSize:'1.25em'}}>Getting Started</button></Link>
+          <Link to="/about"><button className={'btnHover ' +  pageHighlight.aboutHighlight} onClick={() => changeHighlight("about")} style={{fontSize:'1.25em'}}>About</button></Link>        
         </div>
       </div>
       <Outlet />

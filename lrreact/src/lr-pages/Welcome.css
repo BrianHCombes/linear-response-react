@@ -1,0 +1,13 @@
+@font-face {font-family: "Arial Rounded MT Bold"; src: url(../fonts/ARLRDBD_0.TTF);}
+@font-face {font-family: "Draper"; src: url(../fonts/Draper.woff);}    
+
+.arialRnd
+{
+font-family: "Arial Rounded MT Bold";  
+  
+}
+
+.jsComment
+{
+color:#997a00;  
+}  
