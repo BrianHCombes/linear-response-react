@@ -13,6 +13,7 @@ function Layout(){
   const [pageHighlight, setHighlight] = useState({
     welcomeHighlight:   "yesHighlight",
     methodsHighlight:   "noHighlight",
+    examplesHighlight:  "noHighlight",
     explainedHighlight: "noHighlight",
     aboutHighlight:     "noHighlight",
     defaultHighlight:   "noHighlight",
@@ -27,6 +28,7 @@ function Layout(){
         let highlightValues = {
                                 welcomeHighlight:   "noHighlight",
                                 methodsHighlight:   "noHighlight",
+                                examplesHighlight:  "noHighlight",
                                 explainedHighlight: "noHighlight",
                                 aboutHighlight:     "noHighlight",
                                 defaultHighlight:   "noHighlight",
@@ -36,6 +38,7 @@ function Layout(){
         switch(selected){
           case "welcome":   highlightValues.welcomeHighlight    = "yesHighlight";   break;
           case "methods":   highlightValues.methodsHighlight    = "yesHighlight";   break;
+          case "examples":  highlightValues.examplesHighlight   = "yesHighlight";   break;
           case "explained": highlightValues.explainedHighlight  = "yesHighlight";   break;
           case "about":     highlightValues.aboutHighlight      = "yesHighlight";   break;
           case "default":   highlightValues.defaultHighlight    = "yesHighlight";   break;
@@ -48,11 +51,12 @@ function Layout(){
         setHighlight(highlightValues); 
       };
  
+ // https://www.codegrepper.com/code-examples/javascript/how+to+use+%3Clink%3E+tag+in+react+js
 
 return (
     <div>     
         
-      <div style={{textAlign:'center'}}>
+      <div id="test" style={{textAlign:'center'}}>
         <img  src={lr.whtml(titleBanner01,1000,titleBanner02)} 
               alt="LR Graphic Here"
               style={{ width:'98%', marginTop:"1%", border:'2px solid white', borderRadius:lr.w("em",0.75,0.45)}}
@@ -62,9 +66,10 @@ return (
       <div style={{textAlign:"center"}}> 
         <div>
           <Link to="/"><button className={'btnHover ' + pageHighlight.welcomeHighlight} onClick={() => changeHighlight("welcome")} style={{fontSize:'1.25em'}}>Welcome</button></Link>
-          <Link to="/default"><button className={'btnHover ' + pageHighlight.defaultHighlight} onClick={() => changeHighlight("default")} style={{fontSize:'1.25em'}}>Default Settings</button></Link> 
+          <Link to="/default"><button className={'btnHover ' + pageHighlight.defaultHighlight} onClick={() => changeHighlight("default")} style={{fontSize:'1.25em'}}>Settings</button></Link> 
           <Link to="/methods"><button className={'btnHover ' + pageHighlight.methodsHighlight} onClick={() => changeHighlight("methods")} style={{fontSize:'1.25em'}}>Methods</button></Link>
-          <Link to="/explained"><button className={'btnHover ' + pageHighlight.explainedHighlight} onClick={() => changeHighlight("explained")} style={{fontSize:'1.25em'}}>How it Works</button></Link>
+          <Link to="/examples"><button className={'btnHover ' + pageHighlight.examplesHighlight} onClick={() => changeHighlight("examples")} style={{fontSize:'1.25em'}}>Examples</button></Link>
+          <Link to="/explained"><button className={'btnHover ' + pageHighlight.explainedHighlight} onClick={() => changeHighlight("explained")} style={{fontSize:'1.25em'}}>How LR Works</button></Link>
           <Link to="/starting"><button className={'btnHover ' + pageHighlight.startingHighlight} onClick={() => changeHighlight("starting")} style={{fontSize:'1.25em'}}>Getting Started</button></Link>
           <Link to="/about"><button className={'btnHover ' +  pageHighlight.aboutHighlight} onClick={() => changeHighlight("about")} style={{fontSize:'1.25em'}}>About</button></Link>        
         </div>
