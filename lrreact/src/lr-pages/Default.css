@@ -1,0 +1,14 @@
+.button
+{
+  text-decoration:none; 
+  color:blue; 
+  background-color:lightgray;
+  border:1px solid gray;
+  border-radius:0.3em;
+}
+
+.button:hover
+{
+ font-size:1.01em; 
+ box-shadow:0 0 10px black; 
+}

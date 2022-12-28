@@ -10,8 +10,6 @@ function Welcome(){
   return ( 
           
     <React.StrictMode>      
-         
-
       <div  className="" 
             id="titling" 
             style={{
@@ -78,7 +76,7 @@ function Welcome(){
       <div style={{width:'95%', margin:'1% auto 0 auto'}}>    
         <div style={{color:'white', fontSize:'0.85em', fontFamily:'Arial Rounded MT Bold'}}>
           The above LR method will likely be your most used LR method. However, there are many options to refine your response return. 
-          <Link href="#" style={{textDecoration:'none', color:'blue'}}> Click here </Link>to see all the ways you can tailor your return response.
+          <a href="http://localhost:3000/examples" style={{textDecoration:'none', color:'blue'}}> Click here </a>to see all the ways you can tailor your return response.
         </div>
       </div><br /><br /> 
         
