@@ -103,7 +103,7 @@ function Explained(){
                 1920px and 360px.<br /><br />
                 
                 Note: All default units are mutable. 
-                <HashLink className="button" to="/default#pageTopExplained">See Default Settings.</HashLink>
+                <HashLink className="button" to="/default#">See Default Settings.</HashLink>
                 
               </span><br />
             </div>

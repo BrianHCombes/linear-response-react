@@ -9,7 +9,7 @@ import Welcome from './lr-pages/Welcome';
 import Methods from './lr-pages/Methods';
 import Examples from './lr-pages/Examples';
 import Explained from './lr-pages/Explained';
-import About from './lr-pages/About';
+import Help from './lr-pages/Help';
 import Default from './lr-pages/Default';
 import Starting from './lr-pages/Starting';
 
@@ -32,11 +32,10 @@ export default function PageRouter() {
             <Route index element={<Welcome />} />
             <Route path="/methods" element={<Methods />} />  
             <Route path="/explained" element={<Explained />} />   
-            <Route path="/about" element={<About />} />
+            <Route path="/about" element={<Help />} />
             <Route path="/default" element={<Default />} />
             <Route path="/starting" element={<Starting />} /> 
             <Route path="/examples" element={<Examples />} />         
-            
         </Route>
       </Routes>
     </BrowserRouter>
