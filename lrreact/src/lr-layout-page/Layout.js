@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState } from "react";
 import { Outlet, Link } from 'react-router-dom';
-
-import titleBanner01 from '../images/lr-title-banner_01.jpg';
-import titleBanner02 from '../images/lr-title-banner_02.jpg';
+import titleBanner01 from '../images/lr-title-banner_01B.jpg';
+import titleBanner02 from '../images/lr-title-banner_02B.jpg';
 import {lr} from '../lr/lr-single.js';
 import './Layout.css';
 
@@ -40,7 +39,7 @@ function Layout(){
           case "methods":   highlightValues.methodsHighlight    = "yesHighlight";   break;
           case "examples":  highlightValues.examplesHighlight   = "yesHighlight";   break;
           case "explained": highlightValues.explainedHighlight  = "yesHighlight";   break;
-          case "about":     highlightValues.aboutHighlight      = "yesHighlight";   break;
+          case "help":     highlightValues.aboutHighlight       = "yesHighlight";   break;
           case "default":   highlightValues.defaultHighlight    = "yesHighlight";   break;
           case "starting":  highlightValues.startingHighlight   = "yesHighlight";   break;  
           default: console.log("404");
@@ -61,7 +60,8 @@ return (
               alt="LR Graphic Here"
               style={{ width:'98%', marginTop:"1%", border:'2px solid white', borderRadius:lr.w("em",0.75,0.45)}}
         ></img>
-      </div><br />    
+      </div> 
+      <div style={{ color:'white', textAlign:'center', fontSize:lr.w('em',1.25,0.75)}}>API for Responsive Web Design</div><br /> 
         
       <div style={{textAlign:"center"}}> 
         <div>
@@ -71,7 +71,7 @@ return (
           <Link to="/examples"><button className={'btnHover ' + pageHighlight.examplesHighlight} onClick={() => changeHighlight("examples")} style={{fontSize:'1.25em'}}>Examples</button></Link>
           <Link to="/explained"><button className={'btnHover ' + pageHighlight.explainedHighlight} onClick={() => changeHighlight("explained")} style={{fontSize:'1.25em'}}>How LR Works</button></Link>
           <Link to="/starting"><button className={'btnHover ' + pageHighlight.startingHighlight} onClick={() => changeHighlight("starting")} style={{fontSize:'1.25em'}}>Getting Started</button></Link>
-          <Link to="/about"><button className={'btnHover ' +  pageHighlight.aboutHighlight} onClick={() => changeHighlight("about")} style={{fontSize:'1.25em'}}>About</button></Link>        
+          <Link to="/about"><button className={'btnHover ' +  pageHighlight.aboutHighlight} onClick={() => changeHighlight("help")} style={{fontSize:'1.25em'}}>Help</button></Link>        
         </div>
       </div>
       <Outlet />

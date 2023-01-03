@@ -13,7 +13,7 @@ function Welcome(){
       <div  className="" 
             id="titling" 
             style={{
-                    width: lr.w("%",55,98), 
+                    width: lr.w("%",65,98), 
                     marginTop:'1%',
                     marginLeft:'auto', 
                     marginRight:'auto', 
