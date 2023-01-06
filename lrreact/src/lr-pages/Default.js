@@ -103,7 +103,7 @@ function Default(){
       
       {/* LR Range Point setters ***********************************************************************************************************************/}
       <div id='lrSetters' style={{position:'relative'}}>
-         <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
+        <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
         <table style={{ border:'2px solid black', 
                       borderRadius:'.5em',
                       margin:'0 2.5% 0 2.5%',

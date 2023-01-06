@@ -25,6 +25,7 @@ function Welcome(){
         <div style={{textAlign:'center'}}>
           <div className="arialRnd" style={{fontSize: lr.w("em",3.5,1.5), lineHeight:'150%', padding:'1% 0 0 0', textAlign:'center'}}>
               Welcome to LR
+              (the viewport reports are always in px. So why the poo pooing of response in px?
           </div>    
           <div style={{fontSize:'1.25em', padding:'0 6% 0 6%'}}>
           LR is a supplemental tool for designing the responsive<br /> behavior of web pages across all screen sizes. 

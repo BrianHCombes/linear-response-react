@@ -1,9 +1,34 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : Nov 13, 2022, 2:10:02 PM
-    Author     : bcomb
-*/
+.button
+{
+  text-decoration:none; 
+  color:blue; 
+  background-color:lightgray;
+  border:1px solid gray;
+  border-radius:0.3em;
+}
 
+.button:hover
+{
+ font-size:1.01em; 
+ box-shadow:0 0 10px black; 
+}
+
+.exampTable
+{
+border:2px solid black; 
+border-radius:.5em;
+margin:0 2.5% 0 2.5%;
+width:95%; 
+line-height:120%; 
+background-color:#006600; 
+font-family:monospace;
+padding:0 0.5% 1.0% 0.5%;
+color:white 
+}
+
+.hlt_01
+{
+color:#ffff00; 
+background-color:blue; 
+border-radius:0.3em
+}
