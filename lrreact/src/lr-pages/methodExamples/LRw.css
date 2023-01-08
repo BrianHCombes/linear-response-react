@@ -1,0 +1,48 @@
+@font-face {font-family: "Arial Rounded MT Bold"; src: url(../../fonts/ARLRDBD_0.TTF);}
+@font-face {font-family: "Draper"; src: url(../../fonts/Draper.woff);}    
+
+.arialRnd
+{
+font-family: "Arial Rounded MT Bold";  
+  
+}
+
+.jsComment
+{
+color:#997a00;  
+}  
+
+.button
+{
+  text-decoration:none; 
+  color:blue; 
+  background-color:lightgray;
+  border:1px solid gray;
+  border-radius:0.3em;
+}
+
+.button:hover
+{
+ font-size:1.01em; 
+ box-shadow:0 0 10px black; 
+}
+
+.exampTable
+{
+border:2px solid black; 
+border-radius:.75em;
+margin:0 2.5% 0 2.5%;
+width:95%; 
+line-height:120%; 
+background-color:#006600; 
+font-family:monospace;
+padding:0 0.5% 1.0% 0.5%;
+color:white 
+}
+
+.hlt_01
+{
+color:#ffff00; 
+background-color:blue; 
+border-radius:0.3em
+}

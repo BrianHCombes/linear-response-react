@@ -7,6 +7,8 @@ import { HashLink } from 'react-router-hash-link';
 import {lr} from '../lr/lr-single.js';
 
 
+
+
 function Examples(){
   return (
   <React.StrictMode>  
@@ -33,6 +35,7 @@ function Examples(){
           to apply basic DOM manipulation form as catered to by various application frameworks.<br /> <br />
           </div>
           <div>
+           
             <table style={{width:'94%', margin:'0 auto'}}>   
               <tr>
                 <td colSpan='6' style={{width:'100%', textAlign:'center', color:'blue'}}>
@@ -40,7 +43,7 @@ function Examples(){
                 </td>
               </tr>
               <tr>
-                <td><HashLink className="button" to="/examples#lrw">&nbsp;lr.w(args)&nbsp;</HashLink></td>
+                <td><Link className="button" to="/examples/lrw" title="This is the most popular method" >&nbsp;lr.w(args)&nbsp;</Link></td>
                 <td><HashLink className="button" to="/examples#lrww">&nbsp;lr.ww(args)&nbsp;</HashLink></td>
                 <td><HashLink className="button" to="/examples#lrh">&nbsp;lr.h(args)&nbsp;</HashLink></td>
                 <td><HashLink className="button" to="/examples#lrwh">&nbsp;lr.wh(args)&nbsp;</HashLink></td>
@@ -67,11 +70,17 @@ function Examples(){
                 <td colSpan='6'>lr.eval(args)</td>
               </tr>
             </table>
+            
           </div>
-          
+         
           
       </div><br />  
-        
+      
+      <div><Outlet /></div> 
+      <div style={{backgroundColor:'yellow', textAlign:'center'}}>&#8679;&nbsp;&nbsp;Above this is routed in&nbsp;&nbsp;&#8679;</div><br />
+      
+      
+     {/*    
       <div style={{ backgroundColor:'white', fontFamily:'monospace', fontSize:'1.5em', color:'black', 
                     margin:'0 2.5% 0 2.5%', padding:'1% 0 1% 1%', border:'2px solid black', borderRadius:'0.5em'}}>
         <span className="jsComment">&#47;&#47; Example 1:</span><br />
@@ -97,7 +106,7 @@ function Examples(){
           <Link href="#" style={{textDecoration:'none', color:'blue'}}> Click here </Link>to see all the ways you can tailor your return response.
         </div>
       </div><br /><br /> 
-        
+     */}     
   
   
   {/* lr.w(args) example  ********************************************************************************************************/}      
@@ -105,7 +114,7 @@ function Examples(){
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
             Example<br /><br />lr.w(args)
           </th>
         </tr>
@@ -156,7 +165,7 @@ function Examples(){
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
             Example<br /><br />lr.ww(args)
           </th>
         </tr>
@@ -203,7 +212,7 @@ function Examples(){
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
             Example<br /><br />lr.h(args)
           </th>
         </tr>
@@ -251,7 +260,7 @@ function Examples(){
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
             Example<br /><br />lr.wh(args)
           </th>
         </tr>
@@ -260,8 +269,45 @@ function Examples(){
             lr.wh(args)
           </td>
           <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em'}}>
-            Uses the reported <span className='hlt_01'>&nbsp;window height&nbsp;</span> to establish the proper CSS return. There are 3 ways to return a value. 
-            For this example the window height is always the default height reported by the window property window.innerHeight.<br /><br />
+            Uses the reported <span className='hlt_01'>&nbsp;viewport height&nbsp;</span> to establish the proper CSS return. 
+            For this example assume the reported viewport height (window.innerHeight) is 800px.  
+            The reported height will be used to calculate the proper response.<br /><br />
+            Assume the Upper Range Point height is 929px and the Lower Range Point height is 560px.
+            The URP height is also defaulted to the established default window height (window.innerheight) and 
+            not an LR assigned viewport height. It is 929px in this case and reflects the w (for window) in 
+            the lr.wh(args) method. The wh stands for window height, (meaning use the window height). <br /><br />
+            
+            <table style={{width:'100%', border:'none', textAlign:'center'}}>
+            <tr>
+              <th title='Upper Range Point Height'>URP Height</th><th>Reported Height</th><th title='Lower Range Point Height'>LRP Height</th>
+            </tr>
+            <tr>
+              <td style={{borderColor:'lime'}}>929px</td>
+              <td style={{borderColor:'lime'}}>800px</td>
+              <td style={{borderColor:'lime'}}>560px</td>
+            </tr>
+            <tr>
+              <td colSpan='3' style={{textAlign:'center'}}>
+                Example LR expression is:<br />
+                <span style={{fontSize:'1.25em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;lr.wh('line-height:%',180,90)&nbsp;</span>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan='3' style={{textAlign:'center'}}>
+                Return Value is:<br />
+                <span style={{fontSize:'1.1em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;font-size:13.53px&nbsp;</span>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
+                To explain: <br /> The return value is based on the lineation value at the reported ratio of 1.600. 
+                The lineation itself is calculated by using the upper and lower range points of 0.484 and 1.555 respectively.
+                Note: since the reported ratio is closer (is actually past) the LRP the return value is closer to 15 (or what the response
+                would be if the reported ratio had been at the LRP of 1.555).<br />
+                
+              </td>
+            </tr>
+            </table>
             expressions:<br />
             let a = lr.ww('line-height:%',180,90);<br />
             let b = lr.ww('%',180,90);<br /> 
@@ -297,7 +343,7 @@ function Examples(){
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
             Example<br /><br />lr.r(args)
           </th>
         </tr>
@@ -308,21 +354,14 @@ function Examples(){
           <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em'}}>
             Uses the reported <span className='hlt_01'>&nbsp;viewport height/width ratio&nbsp;</span> to establish the proper CSS return. 
             For this example assume the reported viewport width (screen.availWidth) is 768px and the reported height (window.innerHeight)
-            is 1024px. By ratio, 1024px/768px is a ratio of 1.333. This ratio will be used to calculate the proper response.<br /><br />
+            is 1024px. Note: The reported viewport width and height are also typical defaults, that is, screen.availWidth and window.innerHeight. 
+            By ratio, 1024px/768px is a ratio of 1.333. This ratio will be used to calculate the proper response.<br /><br />
             Now assume the Upper Range Point (URP) width is 1920px and the Lower Range Point (LRP) width is 360px. Furthermore, assume the Upper Range
             Point height is 929px and the Lower Range Point height is 560px.<br /><br />
             
           <table style={{width:'100%', border:'none', textAlign:'center'}}>
             <tr>
-            <th title='Upper Range Point'>
-                URP Ratio
-              </th>
-              <th>
-                Reported Ratio
-              </th>
-              <th>
-                LRP Ratio
-              </th>
+            <th title='Upper Range Point Ratio'>URP Ratio</th><th>Reported Ratio</th><th title='Lower Range Point Ratio'>LRP Ratio</th>
             </tr>
             
             <tr>
@@ -354,10 +393,8 @@ function Examples(){
                 The lineation itself is calculated by using the upper and lower range points of 0.484 and 1.555 respectively.
                 Note: since the reported ratio is closer to the LRP the return value is closer to 2 (or what the response
                 would be if the reported ratio had been at the LRP of 1.555).<br />
-                
               </td>
             </tr>
-            
           </table>
             
             There are 3 ways to return a value. <br /><br />
@@ -368,7 +405,91 @@ function Examples(){
             returns:<br />
             a = 'font-size:2.41em'&nbsp;(is string)<br />
             b = '2.41em'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
-            c = 2.41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
+            c = &nbsp;2.41&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
+            
+            <table style={{border:'none', width:'100%'}} >
+              <tr>
+                <td style={{border:'none', width:'7%', verticalAlign:'top'}} >Note:</td>
+                <td style={{border:'none'}} >Property and units can be any CSS format<br />(for example: lr.w('block-size:px',450,125).</td>
+              </tr>
+              <tr>
+                <td style={{border:'none', width:'7%', verticalAlign:'top'}} >Note:</td>
+                <td style={{border:'none'}} >Answer c can be mathematically operated on.<br />(for example: let d = c + 50).</td>
+              </tr>
+              <tr>
+                <td style={{border:'none', width:'7%', verticalAlign:'top'}} >Note:</td>
+                <td style={{border:'none'}} >
+                    The reported viewport height can be the device height, window height or a height set by LR. LR can set the viewport height
+                    to the device height or the window height as needed.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>      
+      </table><br /><br />    
+    </div>
+    {/* lr.wr(args) example  ********************************************************************************************************/}  
+    <div id='lrwr' style={{position:'relative'}}>  
+      <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
+      <table  className='exampTable'>
+        <tr>
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
+            Example<br /><br />lr.wr(args)
+          </th>
+        </tr>
+        <tr>
+          <td style={{width:'16%', padding:'1%', fontSize:'1.5em', fontFamily:'monospace'}}>
+            lr.wr(args)
+          </td>
+          <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em'}}>
+            Uses the reported <span className='hlt_01'>&nbsp;window height/width ratio&nbsp;</span> to establish the proper CSS return. 
+            For this example assume the reported window width (screen.availWidth) is 601px and the reported height (window.innerHeight)
+            is 962px. By ratio, 962px/601px is a ratio of 1.600. This ratio will be used to calculate the proper response.<br /><br />
+            Now assume the Upper Range Point (URP) width is 1920px and the Lower Range Point (LRP) width is 360px. Furthermore, assume the Upper Range
+            Point height is 929px and the Lower Range Point height is 560px.<br /><br />
+            
+          <table style={{width:'100%', border:'none', textAlign:'center'}}>
+            <tr>
+              <th title='Upper Range Point Ratio'>URP Ratio</th><th>Reported Ratio</th><th title='Lower Range Point Ratio'>LRP Ratio</th>
+            </tr>
+            <tr>
+              <td style={{borderColor:'lime'}}>929px/1920px = 0.484</td>
+              <td style={{borderColor:'lime'}}>962px/601px = 1.600</td>
+              <td style={{borderColor:'lime'}}>560px/360px = 1.555</td>
+            </tr>
+            <tr>
+              <td colSpan='3' style={{textAlign:'center'}}>
+                Example LR expression is:<br />
+                <span style={{fontSize:'1.25em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;lr.r('width:px',50,15)&nbsp;</span>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan='3' style={{textAlign:'center'}}>
+                Return Value is:<br />
+                <span style={{fontSize:'1.1em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;font-size:13.53px&nbsp;</span>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
+                To explain: <br /> The return value is based on the lineation value at the reported ratio of 1.600. 
+                The lineation itself is calculated by using the upper and lower range points of 0.484 and 1.555 respectively.
+                Note: since the reported ratio is closer (is actually past) the LRP the return value is closer to 15 (or what the response
+                would be if the reported ratio had been at the LRP of 1.555).<br />
+                
+              </td>
+            </tr>
+            
+          </table>
+            
+            There are 3 ways to return a value. <br /><br />
+            expressions:<br />
+            let a = lr.w('width:px',50,15);<br />
+            let b = lr.w('px',50,15);<br /> 
+            let c = lr.w('',50,15);<br /><br />
+            returns:<br />
+            a = 'width:13.53px'&nbsp;(is string)<br />
+            b = '13.53px'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
+            c = &nbsp;13.53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
             
             <table style={{border:'none', width:'100%'}} >
               <tr>
@@ -407,7 +528,7 @@ function Examples(){
                     fontFamily:'Arial Rounded MT Bold',
                     padding:'0 0.5% 1.0% 0.5%'}}>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}} >
             LR short form method examples
           </th>
         </tr>
@@ -460,7 +581,7 @@ function Examples(){
           </td>
         </tr>
         <tr>
-          <td colspan="2" style={{textAlign:'left', padding:'1%'}}>
+          <td colSpan="2" style={{textAlign:'left', padding:'1%'}}>
             <span style={{color:'red', fontSize:'1.5em'}}><b>*</b></span>
             <Link to="#" style={{textDecoration:'none'}}>
               lr.w(args) will likely be your most used LR method.<br />
@@ -469,7 +590,7 @@ function Examples(){
           </td>
         </tr>
         <tr>
-          <td colspan="2" style={{textAlign:'left', padding:'1%'}}>
+          <td colSpan="2" style={{textAlign:'left', padding:'1%'}}>
             <sup style={{color:'red', fontSize:'1.5em'}}><b>**</b></sup><a href="#">About device, window, and viewport widths and their differences.</a>
           </td>
         </tr>
@@ -485,7 +606,7 @@ function Examples(){
                     fontFamily:'Arial Rounded MT Bold',
                     padding:'0 0.5% 1.0% 0.5%'}}>
         <tr>
-          <th colspan="2" style={{fontSize:'2em', padding:'1%'}}>
+          <th colSpan="2" style={{fontSize:'2em', padding:'1%'}}>
             <div style={{marginBottom:'1%'}}>LR Methods returning HTML or CSS snippets</div>
             <div style={{ display:'inline-block',
                           fontSize:'0.4em', 
@@ -545,7 +666,7 @@ function Examples(){
           </td>
         </tr>  
         <tr>
-          <td colspan="2" style={{textAlign:'center'}}>
+          <td colSpan="2" style={{textAlign:'center'}}>
             <sup style={{color:'red', fontSize:'1.5em'}}><b>*</b></sup><a href="#">About device, window, and viewport widths</a>
           </td>
         </tr>
