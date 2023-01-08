@@ -13,15 +13,10 @@ import Help from './lr-pages/Help';
 import Default from './lr-pages/Default';
 import Starting from './lr-pages/Starting';
 
-//const root = ReactDOM.createRoot(document.getElementById('root1'));
-//root.render(
-//    <Car />
-//);
-
-//const root2 = ReactDOM.createRoot(document.getElementById('root2'));
-//root2.render(
-//    <Truck />
-//);
+import NestTest from './lr-pages/NestTest';
+import LRw from './lr-pages/methodExamples/LRw';
+import LRww from './lr-pages/methodExamples/LRww';
+import LRh from './lr-pages/methodExamples/LRh';
 
 
 export default function PageRouter() {
@@ -35,7 +30,16 @@ export default function PageRouter() {
             <Route path="/about" element={<Help />} />
             <Route path="/default" element={<Default />} />
             <Route path="/starting" element={<Starting />} /> 
-            <Route path="/examples" element={<Examples />} />         
+            <Route path="/examples" element={<Examples />}>
+                <Route path="lrw" element={<LRw />} />
+                <Route path="lrww" element={<LRww />} />
+                <Route path="lrh" element={<LRh />} />
+            </Route>
+            <Route path="/nestTest" element={<NestTest />}>
+                <Route path="nestPage1" element={<LRw />} />
+                <Route path="nestPage2" element={<LRww />} />
+                <Route path="nestPage3" element={<LRh />} />
+            </Route>                 
         </Route>
       </Routes>
     </BrowserRouter>

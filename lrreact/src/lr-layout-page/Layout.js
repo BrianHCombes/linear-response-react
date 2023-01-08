@@ -16,7 +16,8 @@ function Layout(){
     explainedHighlight: "noHighlight",
     aboutHighlight:     "noHighlight",
     defaultHighlight:   "noHighlight",
-    startingHighlight:  "noHighlight"
+    startingHighlight:  "noHighlight",
+    nestTestHighlight:  "noHighlight"
   });
   
         
@@ -31,7 +32,8 @@ function Layout(){
                                 explainedHighlight: "noHighlight",
                                 aboutHighlight:     "noHighlight",
                                 defaultHighlight:   "noHighlight",
-                                startingHighlight:  "noHighlight"
+                                startingHighlight:  "noHighlight",
+                                nestTestHighlight:  "noHighlight"
                               };
         
         switch(selected){
@@ -39,9 +41,10 @@ function Layout(){
           case "methods":   highlightValues.methodsHighlight    = "yesHighlight";   break;
           case "examples":  highlightValues.examplesHighlight   = "yesHighlight";   break;
           case "explained": highlightValues.explainedHighlight  = "yesHighlight";   break;
-          case "help":     highlightValues.aboutHighlight       = "yesHighlight";   break;
+          case "help":      highlightValues.aboutHighlight      = "yesHighlight";   break;
           case "default":   highlightValues.defaultHighlight    = "yesHighlight";   break;
-          case "starting":  highlightValues.startingHighlight   = "yesHighlight";   break;  
+          case "starting":  highlightValues.startingHighlight   = "yesHighlight";   break; 
+          case "nestTest":  highlightValues.nestTestHighlight   = "yesHighlight";   break; 
           default: console.log("404");
         }
         
@@ -72,6 +75,7 @@ return (
           <Link to="/explained"><button className={'btnHover ' + pageHighlight.explainedHighlight} onClick={() => changeHighlight("explained")} style={{fontSize:'1.25em'}}>How LR Works</button></Link>
           <Link to="/starting"><button className={'btnHover ' + pageHighlight.startingHighlight} onClick={() => changeHighlight("starting")} style={{fontSize:'1.25em'}}>Getting Started</button></Link>
           <Link to="/about"><button className={'btnHover ' +  pageHighlight.aboutHighlight} onClick={() => changeHighlight("help")} style={{fontSize:'1.25em'}}>Help</button></Link>        
+          <Link to="/nestTest"><button className={'btnHover ' +  pageHighlight.nestTestHighlight} onClick={() => changeHighlight("nestTest")} style={{fontSize:'1.25em'}}>NestTest</button></Link>        
         </div>
       </div>
       <Outlet />
