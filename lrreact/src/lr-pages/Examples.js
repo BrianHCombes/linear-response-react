@@ -35,7 +35,7 @@ function Examples(){
           to apply basic DOM manipulation form as catered to by various application frameworks.<br /> <br />
           </div>
           <div>
-           
+            
             <table style={{width:'94%', margin:'0 auto'}}>   
               <tr>
                 <td colSpan='6' style={{width:'100%', textAlign:'center', color:'blue'}}>
@@ -44,7 +44,7 @@ function Examples(){
               </tr>
               <tr>
                 <td><Link className="button" to="/examples/lrw" title="This is the most popular method" >&nbsp;lr.w(args)&nbsp;</Link></td>
-                <td><HashLink className="button" to="/examples#lrww">&nbsp;lr.ww(args)&nbsp;</HashLink></td>
+                <td><Link className="button" to="/examples/lrww" title="This is the window width method" >&nbsp;lr.ww(args)&nbsp;</Link></td>
                 <td><HashLink className="button" to="/examples#lrh">&nbsp;lr.h(args)&nbsp;</HashLink></td>
                 <td><HashLink className="button" to="/examples#lrwh">&nbsp;lr.wh(args)&nbsp;</HashLink></td>
                 <td><HashLink className="button" to="/examples#lrr">&nbsp;lr.r(args)&nbsp;</HashLink></td>
@@ -70,7 +70,7 @@ function Examples(){
                 <td colSpan='6'>lr.eval(args)</td>
               </tr>
             </table>
-            
+           
           </div>
          
           
@@ -110,6 +110,7 @@ function Examples(){
   
   
   {/* lr.w(args) example  ********************************************************************************************************/}      
+  {/* 
     <div id='lrw' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -160,6 +161,7 @@ function Examples(){
         </tr>      
       </table><br /><br />    
     </div>    
+  */}
   {/* lr.ww(args) example  ********************************************************************************************************/} 
     <div id='lrww' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>

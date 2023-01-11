@@ -1,5 +1,5 @@
 import React from 'react';
-import './LRw.css';
+import './common-css.css';
 import { Outlet, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import {lr} from '../../lr/lr-single.js';
@@ -30,12 +30,13 @@ const LRw = () => {
             <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em', textAlign:'left'}}>
               lr.w(args) uses the reported <span className='hlt_01'>&nbsp;viewport width&nbsp;</span> to establish the proper CSS return. 
               For this example assume the reported viewport width (screen.availWidth) is 1366px. Furthermore, assume the URP (Upper
-              Range Point) is the default of 1920px and the LRP (Lower Range Point) is the default of 360px.<br />
+              Range Point) is the default of 1920px which will correlate to the 30px in the LR expression and the LRP (Lower Range Point) 
+              is the default of 360px which will correlate to the 12px in the LR expression.<br />
               Here is the example with details:<br /><br />
               
               <table style={{width:'100%', border:'none', textAlign:'center'}}>
                 <tr>
-                <th title='Upper Range Point'>URP</th><th>Reported Width</th><th title='Lower Range Point'>LRP</th>
+                <th title='Upper Range Point'>URP</th><th title='Reported width from a hypothetical device'>Reported Width</th><th title='Lower Range Point'>LRP</th>
                 </tr>
 
                 <tr>
@@ -52,25 +53,32 @@ const LRw = () => {
                 <tr>
                   <td colSpan='3' style={{textAlign:'center'}}>
                     Example LR expression is:<br />
-                    <span style={{fontSize:'1.25em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;lr.w('font-size:px',30px,12px)&nbsp;</span>
+                    <span style={{fontSize:'1.25em', 
+                                  padding:'0.5% 0', 
+                                  lineHeight:'160%', 
+                                  backgroundColor:'#004400', 
+                                  borderRadius:'0.3em'}}>
+                      &nbsp;lr.w('font-size:px',30,12)&nbsp;
+                    </span>
                   </td>
                 </tr>
                 <tr>
                   <td colSpan='3' style={{textAlign:'center'}}>
                     Return Value is:<br />
-                    <span style={{fontSize:'1.1em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;font-size:23.61px&nbsp;</span>
+                    <span style={{fontSize:'1.1em', padding:'0.5% 0', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;font-size:23.61px&nbsp;</span>
                   </td>
                 </tr>
                 <tr>
                   <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
                     To explain: <br /> The return value of 23.61px is based on the lineation value at the reported width of 1366px. 
                     The lineation itself is calculated by using the upper and lower range points of 1920px and 360px respectively.
-                    Thus, at a width of 1366px the return value will be 23.61px. Note: Your device will round up to 24px.<br />
+                    Consequently, at 1920px the return is 30px and at 360px the return is 12px. Thus, at a reported width of 1366px 
+                    the return value will be 23.61px. Note: Your device will round it up to 24px.<br />
                   </td>
                 </tr>
               </table><br />
               
-              This example can other expressions:<br />
+              This example can have other expression formats:<br />
               let a = lr.w('font-size:px',30,12);<br />
               let b = lr.w('px',30,12);<br /> 
               let c = lr.w('',30,12);<br /><br />

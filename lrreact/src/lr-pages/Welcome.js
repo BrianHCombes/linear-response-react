@@ -25,14 +25,20 @@ function Welcome(){
         <div style={{textAlign:'center'}}>
           <div className="arialRnd" style={{fontSize: lr.w("em",3.5,1.5), lineHeight:'150%', padding:'1% 0 0 0', textAlign:'center'}}>
               Welcome to LR
-              (the viewport reports are always in px. So why the poo pooing of response in px?
           </div>    
           <div style={{fontSize:'1.25em', padding:'0 6% 0 6%'}}>
           LR is a supplemental tool for designing the responsive<br /> behavior of web pages across all screen sizes. 
           </div>
           <ul style={{padding:'0 8% 0 8%', textAlign:'left'}}>
             <li style={{textAlign:'left'}}>
-              LR stands for Linear Response
+              LR stands for Linear Response<br />
+              <span style={{color:'red'}}>
+                  &#8680; Viewport reports are always in px. So why the poo pooing of response in px?<br />
+                  &#8680; With LR you can supplant or supplement your approach to responsive web design.<br />
+                  &#8680; LR excels where traditional methods come up short.<br />
+                  &#8680; Explain difference between viewport width and window width. Height also.
+              </span>    
+                                          
             </li>
             <li style={{textAlign:'left', marginTop:"0.2em"}}>
               LR is an API for the responsive aspect of web design
