@@ -6,7 +6,7 @@ import {lr} from '../../lr/lr-single.js';
 
 
 
-const LRww = () => {
+const LRwh = () => {
   
   console.log("Who Goes There?");
   
@@ -20,13 +20,13 @@ const LRww = () => {
         <table  className='exampTable'>
           <tr>
             <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
-              Example<br /><br />lr.ww(args)
+              Example<br /><br />lr.wh(args)
             </th>
           </tr>
           <tr>
             
             <td style={{width: lr.w('%',16,22), padding:'1%', fontSize: lr.w('em',1.5,1.25), fontFamily:'monospace', display: lr.wcss('table-cell',850,'none')}}>
-              lr.ww(args)
+              lr.wh(args)
             </td>
   
             <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em', textAlign:'left'}}>
@@ -121,4 +121,4 @@ const LRww = () => {
   );    
 };
 
-export default LRww;
+export default LRwh;

@@ -15,8 +15,8 @@ const LRw = () => {
     {/*comment to eliminate error flags elsewhere;*/}<span style={{}}></span>
       
     {/* lr.w(args) example  ********************************************************************************************************/}      
-      <div id='lrw' style={{position:'relative'}}>  
-        <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
+      <div id='lrw' style={{position:'relative', margin:'0 auto'}}>  
+        <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'1%'}}><b>To Top</b></button>
         <table  className='exampTable'>
           <tr>
             <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
@@ -24,10 +24,10 @@ const LRw = () => {
             </th>
           </tr>
           <tr>
-            <td style={{width:'16%', padding:'1%', fontSize:'1.5em', fontFamily:'monospace'}}>
+            <td style={{width: lr.w('%',16,22), padding:'1%', fontSize: lr.w('em',1.5,1.25), fontFamily:'monospace', display: lr.wcss('table-cell',850,'none')}}>
               lr.w(args)
             </td>
-            <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em', textAlign:'left'}}>
+            <td className='descText'  style={{padding:'1%', textAlign:'left', fontSize:lr.w('em',1.25,1)}}>
               lr.w(args) uses the reported <span className='hlt_01'>&nbsp;viewport width&nbsp;</span> to establish the proper CSS return. 
               For this example assume the reported viewport width (screen.availWidth) is 1366px. Furthermore, assume the URP (Upper
               Range Point) is the default of 1920px which will correlate to the 30px in the LR expression and the LRP (Lower Range Point) 
@@ -51,21 +51,19 @@ const LRw = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan='3' style={{textAlign:'center'}}>
+                  <td colSpan='3' style={{textAlign:'center', padding:'0.75% 0'}}>
                     Example LR expression is:<br />
-                    <span style={{fontSize:'1.25em', 
-                                  padding:'0.5% 0', 
-                                  lineHeight:'160%', 
-                                  backgroundColor:'#004400', 
-                                  borderRadius:'0.3em'}}>
+                    <span className='expression'>
                       &nbsp;lr.w('font-size:px',30,12)&nbsp;
                     </span>
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan='3' style={{textAlign:'center'}}>
+                  <td colSpan='3' style={{textAlign:'center', padding:'0.75% 0'}}>
                     Return Value is:<br />
-                    <span style={{fontSize:'1.1em', padding:'0.5% 0', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;font-size:23.61px&nbsp;</span>
+                    <span className='expressionValue'>
+                      &nbsp;font-size:23.61px&nbsp;
+                    </span>
                   </td>
                 </tr>
                 <tr>
@@ -110,8 +108,9 @@ const LRw = () => {
                 </tr>
               </table>
             </td>
-          </tr>      
-        </table><br /><br />    
+          </tr>  <br /><br />       
+        </table>   
+      <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', bottom:'1%'}}><b>To Top</b></button>
       </div>
     </React.StrictMode>  
   );    

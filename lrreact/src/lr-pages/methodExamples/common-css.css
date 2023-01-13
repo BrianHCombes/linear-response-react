@@ -30,14 +30,14 @@ color:#997a00;
 .exampTable
 {
 border:2px solid black; 
-border-radius:.75em;
+border-radius:.5em;
 margin:0 2.5% 0 2.5%;
 width:95%; 
 line-height:120%; 
-background-color:#446600; 
+background-color:#006600; 
 font-family:monospace;
 padding:0 0.5% 1.0% 0.5%;
-color:#eeeeee
+color:white 
 }
 
 .hlt_01
@@ -45,4 +45,32 @@ color:#eeeeee
 color:#ffff00; 
 background-color:blue; 
 border-radius:0.3em
+}
+
+.expression
+{
+font-size:1.15em; 
+padding:0.5% 0; 
+line-height:160%; 
+background-color:#004400; 
+border-radius:0.3em;
+border:1px solid lime;  
+}
+.expressionValue
+{
+font-size:1.1em; 
+padding:0.5% 0; 
+line-height:160%; 
+background-color:#004400; 
+border-radius:0.3em; 
+border:1px solid lime;  
+  
+}
+
+descText
+{
+padding:1%; 
+vertical-align:middle; 
+font-family:monospace; 
+text-align:center;   
 }
