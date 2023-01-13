@@ -29,26 +29,26 @@ function Examples(){
           <div className="arialRnd" style={{fontSize: lr.w("em",3.5,1.5), lineHeight:'150%', padding:'1% 0 0 0', textAlign:'center'}}>
               Examples
           </div>    
-          <div style={{fontSize:'1.25em', padding:'0 4% 0 4%', textAlign:'left'}}>
+          <div style={{fontSize:lr.w('em',1.25,1), padding:'0 4% 0 4%', textAlign:'left'}}>
           Here are various examples for using LR. They use basic javascript code for manipulating the DOM. 
           Although limited, any examples for use in various frameworks will be shown. Generally, it is advised
           to apply basic DOM manipulation form as catered to by various application frameworks.<br /> <br />
           </div>
           <div>
-           
-            <table style={{width:'94%', margin:'0 auto'}}>   
+            
+            <table style={{width:'96%', margin:'0 auto', fontSize:lr.w("em",1,600,0.6,0.4)}}>   
               <tr>
                 <td colSpan='6' style={{width:'100%', textAlign:'center', color:'blue'}}>
                   Choose Your Example
                 </td>
               </tr>
               <tr>
-                <td><Link className="button" to="/examples/lrw" title="This is the most popular method" >&nbsp;lr.w(args)&nbsp;</Link></td>
-                <td><HashLink className="button" to="/examples#lrww">&nbsp;lr.ww(args)&nbsp;</HashLink></td>
-                <td><HashLink className="button" to="/examples#lrh">&nbsp;lr.h(args)&nbsp;</HashLink></td>
-                <td><HashLink className="button" to="/examples#lrwh">&nbsp;lr.wh(args)&nbsp;</HashLink></td>
-                <td><HashLink className="button" to="/examples#lrr">&nbsp;lr.r(args)&nbsp;</HashLink></td>
-                <td><HashLink className="button" to="/examples#lrwr">&nbsp;lr.wr(args)&nbsp;</HashLink></td>
+                <td><Link className="button" to="/examples/lrw"  title="This is the viewport width method" >&nbsp;lr.w(args)&nbsp;</Link></td>
+                <td><Link className="button" to="/examples/lrww" title="This is the window width method"   >&nbsp;lr.ww(args)&nbsp;</Link></td>
+                <td><Link className="button" to="/examples/lrh"  title="This is the viewport height method">&nbsp;lr.h(args)&nbsp;</Link></td>
+                <td><Link className="button" to="/examples/lrwh" title="This is the window height method"  >&nbsp;lr.wh(args)&nbsp;</Link></td>
+                <td><Link className="button" to="/examples/lrr"  title="This is the window height method"  >&nbsp;lr.r(args)&nbsp;</Link></td>
+                <td><Link className="button" to="/examples/lrwr" title="This is the window height method"  >&nbsp;lr.wr(args)&nbsp;</Link></td>
               </tr>
               <tr>
                 <td>lr.wLF(args)</td>
@@ -70,7 +70,7 @@ function Examples(){
                 <td colSpan='6'>lr.eval(args)</td>
               </tr>
             </table>
-            
+           
           </div>
          
           
@@ -110,6 +110,7 @@ function Examples(){
   
   
   {/* lr.w(args) example  ********************************************************************************************************/}      
+  {/* 
     <div id='lrw' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -160,7 +161,9 @@ function Examples(){
         </tr>      
       </table><br /><br />    
     </div>    
+  */}
   {/* lr.ww(args) example  ********************************************************************************************************/} 
+  {/*  
     <div id='lrww' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -207,7 +210,9 @@ function Examples(){
         </tr>      
       </table><br /><br />    
     </div> 
-  {/* lr.h(args) example  ********************************************************************************************************/}  
+  */}
+  {/* lr.h(args) example  ********************************************************************************************************/} 
+  {/*   
     <div id='lrh' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -255,7 +260,9 @@ function Examples(){
         </tr>      
       </table><br /><br />    
     </div> 
+  */}
   {/* lr.wh(args) example  ********************************************************************************************************/}   
+  {/*   
     <div id='lrwh' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -337,8 +344,10 @@ function Examples(){
           </td>
         </tr>      
       </table><br /><br />    
-    </div>  
-    {/* lr.r(args) example  ********************************************************************************************************/}  
+    </div> 
+    */}
+    {/* lr.r(args) example  ********************************************************************************************************/} 
+    {/*   
     <div id='lrr' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -428,7 +437,9 @@ function Examples(){
         </tr>      
       </table><br /><br />    
     </div>
+    */}
     {/* lr.wr(args) example  ********************************************************************************************************/}  
+    {/*   
     <div id='lrwr' style={{position:'relative'}}>  
       <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'3.3%', top:'2%'}}><b>To Top</b></button>
       <table  className='exampTable'>
@@ -512,13 +523,13 @@ function Examples(){
         </tr>      
       </table><br /><br />    
     </div>
+    */} 
      
      
      
      
      
-     
-    
+  {/*  
     <table style={{ border:'2px solid black', 
                     borderRadius:'.5em',
                     margin:'0 2.5% 0 2.5%',
@@ -595,7 +606,9 @@ function Examples(){
           </td>
         </tr>
       </table>
-      <br /><br />
+   */} 
+   
+      
       
       <table style={{ border:'2px solid black', 
                     borderRadius:'.5em',

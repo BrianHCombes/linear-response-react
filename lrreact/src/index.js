@@ -14,10 +14,12 @@ import Default from './lr-pages/Default';
 import Starting from './lr-pages/Starting';
 
 import NestTest from './lr-pages/NestTest';
-import LRw from './lr-pages/methodExamples/LRw';
+import LRw  from './lr-pages/methodExamples/LRw';
 import LRww from './lr-pages/methodExamples/LRww';
-import LRh from './lr-pages/methodExamples/LRh';
-
+import LRh  from './lr-pages/methodExamples/LRh';
+import LRwh from './lr-pages/methodExamples/LRwh';
+import LRr  from './lr-pages/methodExamples/LRr';
+import LRwr from './lr-pages/methodExamples/LRwr';
 
 export default function PageRouter() {
   return (
@@ -25,15 +27,18 @@ export default function PageRouter() {
       <Routes>
         <Route path="/" element={<Layout />}>
             <Route index element={<Welcome />} />
-            <Route path="/methods" element={<Methods />} />  
+            <Route path="/methods"   element={<Methods />} />  
             <Route path="/explained" element={<Explained />} />   
-            <Route path="/about" element={<Help />} />
-            <Route path="/default" element={<Default />} />
-            <Route path="/starting" element={<Starting />} /> 
-            <Route path="/examples" element={<Examples />}>
-                <Route path="lrw" element={<LRw />} />
-                <Route path="lrww" element={<LRww />} />
-                <Route path="lrh" element={<LRh />} />
+            <Route path="/about"     element={<Help />} />
+            <Route path="/default"   element={<Default />} />
+            <Route path="/starting"  element={<Starting />} /> 
+            <Route path="/examples"  element={<Examples />}>
+                <Route path="lrw"    element={<LRw />} />
+                <Route path="lrww"   element={<LRww />} />
+                <Route path="lrh"    element={<LRh />} />
+                <Route path="lrwh"   element={<LRwh />} />
+                <Route path="lrr"    element={<LRr />} />
+                <Route path="lrwr"   element={<LRwr />} />
             </Route>
             <Route path="/nestTest" element={<NestTest />}>
                 <Route path="nestPage1" element={<LRw />} />
