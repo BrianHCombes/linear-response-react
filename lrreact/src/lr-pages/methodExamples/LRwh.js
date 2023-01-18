@@ -31,9 +31,10 @@ const LRwh = () => {
   
             <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em', textAlign:'left'}}>
               lr.ww(args) uses the reported <span className='hlt_01'>&nbsp;window width&nbsp;</span> to establish the proper CSS return. 
-              For this example assume the reported window width (screen.availWidth) is 1536px. Furthermore, assume the URP (Upper
-              Range Point) is the default of 1920px which will correlate to the 180% in the LR expression and the LRP (Lower Range Point) 
-              is the default of 360px which will correlate to the 90% in the LR expression.<br /><br /> 
+              For this example assume the reported window width (screen.availWidth) is 1536px. Furthermore, assume 
+              the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> is the default of 1920px which will correlate
+              to the 180% in the LR expression and the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span>is 
+              the default of 360px which will correlate to the 90% in the LR expression.<br /><br /> 
               Note: <span className='hlt_01'>&nbsp;viewport width and window width&nbsp;</span> will often be the same value. They will
               only differ if the viewport width is assigned a value other than the window width. When they differ, lr.w(args) always 
               uses the reported viewport width and lr.ww(args) always uses the window width.<br />
