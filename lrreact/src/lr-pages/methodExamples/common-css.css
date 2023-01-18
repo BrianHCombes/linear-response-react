@@ -27,6 +27,20 @@ color:#997a00;
  box-shadow:0 0 10px black; 
 }
 
+.toTop
+{
+  color:blue;
+  padding:0.2% 0.5%;
+  border:1px solid black;
+  border-radius:0.4em 
+}
+
+.toTop:hover
+{
+ font-size:0.9em; 
+ box-shadow:0 0 10px black; 
+}
+
 .exampTable
 {
 border:2px solid black; 
@@ -35,6 +49,19 @@ margin:0 2.5% 0 2.5%;
 width:95%; 
 line-height:120%; 
 background-color:#006600; 
+font-family:monospace;
+padding:0 0.5% 1.0% 0.5%;
+color:white 
+}
+
+.exampTable2
+{
+border:2px solid black; 
+border-radius:.5em;
+margin:0 2.5% 0 2.5%;
+width:95%; 
+line-height:120%; 
+background-color:#007744; 
 font-family:monospace;
 padding:0 0.5% 1.0% 0.5%;
 color:white 
@@ -50,7 +77,7 @@ border-radius:0.3em
 .expression
 {
 font-size:1.15em; 
-padding:0.5% 0; 
+padding:2%; 
 line-height:160%; 
 background-color:#004400; 
 border-radius:0.3em;
@@ -59,7 +86,7 @@ border:1px solid lime;
 .expressionValue
 {
 font-size:1.1em; 
-padding:0.5% 0; 
+padding:2%; 
 line-height:160%; 
 background-color:#004400; 
 border-radius:0.3em; 
