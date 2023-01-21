@@ -218,7 +218,7 @@ const LRw = () => {
                     The lineation itself is segmented in this case. The first segment is calculated by lineating from 
                     the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> of 1920px to the arg value of 800px 
                     (as shown in the expression). The second segment is from 800px down to (and beyond) the LRP of 360px. Thus the return value 
-                    will be 'font-size:12px' at viewport width of 780px and stay at font-size:12px all the way from 800px wide down 
+                    will be 'font-size:12px' at viewport width of 780px and stay at font-size:12dirpx all the way from 800px wide down 
                     to the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> of 360px wide (See expression). 
                     Consequently, at 1920px <span title='Upper Range Point' style={{color:'yellow'}}><i>(URP)</i></span> wide the 
                     return is 'font-size:30px' down to 'font-size:12px' at 800px wide and stays flat at 'font-size:12px' from 800px wide 
