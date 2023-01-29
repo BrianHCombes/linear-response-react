@@ -80,22 +80,21 @@ const LRw = () => {
                     </span>
                   </td>
                 </tr>
-{/*   ********************************************************************************************************/}               
                 <tr>
-                <td colSpan='3' style={{}}>
-                <div><button className="toTop" onClick={showHideGraph_01} style={{}}><b>Show/Hide Graph</b></button></div>
-                  <div id='showHide_01' style={{display:'none'}}>
-                    <img src={graph_04} alt='is graph_03.jpg' style={{border:'2px solid black', width:'94%'}}></img>
-                    <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a viewport width of 1366px (green). 
-                                                                    The return value is 23.61px. 
-                    </div>
-                  </div>  
-                </td>
+                  <td colSpan='3' style={{}}>
+                  <div><button className="toTop" onClick={showHideGraph_01} style={{}}><b>Show/Hide Graph</b></button></div>
+                    <div id='showHide_01' style={{display:'none'}}>
+                      <img src={graph_03} alt='is graph_03.jpg' style={{border:'2px solid black', width:'94%'}}></img>
+                      <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a viewport width of 1366px (green). 
+                                                                      The return value is 23.61px. 
+                      </div>
+                    </div>  
+                  </td>
                 </tr>
-{/*   ********************************************************************************************************/}                
                 <tr>
                   <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
-                    To explain: <br /> The return value of 'font-size:23.61px' is based on the lineation value at the reported width of 1366px. 
+                    <span className='toExplain'>&nbsp;To explain:&nbsp;</span> <br /> The return value of 'font-size:23.61px' is based on 
+                    the lineation value at the reported width of 1366px. 
                     The lineation itself is calculated by using the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> and 
                     <span title='Lower Range Point' style={{color:'yellow'}}><i>&nbsp;LRP</i></span> of 1920px and 360px respectively.
                     Consequently, at 1920px the return is 'font-size:30px' and at 360px the return is 'font-size:12px'. Thus, at a reported width of 1366px 
@@ -202,7 +201,7 @@ const LRw = () => {
                 <td colSpan='3' style={{}}>
                 <div><button className="toTop" onClick={showHideGraph_02} style={{}}><b>Show/Hide Graph</b></button></div>
                   <div id='showHide_02' style={{display:'none'}}>
-                    <img src={graph_03} alt='is graph_03.jpg' style={{border:'2px solid black', width:'94%'}}></img>
+                    <img src={graph_04} alt='is graph_04.jpg' style={{border:'2px solid black', width:'94%'}}></img>
                     <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a viewport width of 780px (green). 
                                                                     The return value is 12px since 780px falls on Segment 2. And of
                                                                     course, it's 12px on all viewport widths of 800px down (and) thru 
@@ -214,7 +213,8 @@ const LRw = () => {
                 
                 <tr>
                   <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
-                    To explain: <br /> The return value of 'font-size:12px' is based on the lineation value at the reported width of 780px. 
+                    <span className='toExplain'>&nbsp;To explain:&nbsp;</span> <br /> The return value of 'font-size:12px' is based on the 
+                    lineation value at the reported width of 780px. 
                     The lineation itself is segmented in this case. The first segment is calculated by lineating from 
                     the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> of 1920px to the arg value of 800px 
                     (as shown in the expression). The second segment is from 800px down to (and beyond) the LRP of 360px. Thus the return value 
