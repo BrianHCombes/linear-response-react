@@ -4,6 +4,7 @@ import { Outlet, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import {lr} from '../../lr/lr-single.js';
 import graph_05 from '../../images/graph_05.jpg';
+import graph_06 from '../../images/graph_06.jpg';
 
 
 
@@ -98,15 +99,18 @@ const LRww = () => {
                 </tr>
                 <tr>
                   <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
-                    To explain: <br /> In this case, the reported <span className='hlt_01'>&nbsp;window width&nbsp;</span> is above 
+                    <span className='toExplain'>&nbsp;To explain:&nbsp;</span> <br /> In this case, the 
+                    reported <span className='hlt_01'>&nbsp;window width&nbsp;</span> is above 
                     the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span>. This causes the response to default
                     to the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> and thus returns a value of 
                     'line-height:180%' Of course if the reported window width were less than
                     the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> (let's say 1024px) the appropriate 
                     lineated value would be returned.<br /><br /> 
                     
-                    This is a situation where the web designer has decided to define a specific lineation range for the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> and 
-                    left the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> at default. This is because the web designer wants lineation to be ranged within a defined
+                    This is a situation where the web designer has decided to define a specific lineation range for 
+                    the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> and 
+                    left the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> at default. This is because 
+                    the web designer wants lineation to be ranged within a defined
                     width for an HTML element and not based on a window based width.<br />
                      
                   </td>
@@ -155,21 +159,23 @@ const LRww = () => {
           <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'0.5%', top:'0.5%'}}><b>To Top</b></button>
           <tr>
             <th colspan="2" style={{fontSize:'2em', padding:'1%'}} >
-              (Advanced) Example<br /><br />lr.w(args)<br /><br />(Segmented Lineation)
+              (Advanced) Example<br /><br />lr.ww(args)<br /><br />(Segmented Lineation)
             </th>
           </tr>
           <tr>
             <td style={{ padding:'1%', lineHeight:'120%', fontFamily:'monospace', fontSize:lr.w('em',1.5,1.25), width:lr.w('%',16,22), display:lr.wcss('table-cell',850,'none')}}>
-              (Advanced)<br />lr.w(args)
+              (Advanced)<br />lr.ww(args)
             </td>
             <td className='descText'  style={{padding:'1%', textAlign:'left',  lineHeight:'110%', fontSize:lr.w('em',1.25,1)}}>
-              LR has the capability to lineate in segments as defined by the argument values you enter. LR.w(args) can accept 
+              LR has the capability to lineate in segments as defined by the argument values you enter. LR.ww(args) can accept 
               3 + 2n arguments so you can lineate from the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP&nbsp;</i></span> 
               to a pre determined point and then optionally lineate to another predetermined point and/or down to the 
               <span title='Lower Range Point' style={{color:'yellow'}}><i>&nbsp;LRP</i></span>, and so on, all at a different rates. 
               This is an ideal capability of LR for those finicky response situations.<br /><br />
-              For example, you may want to lineate down to a specific width or height and then stay flat the rest of the way 
-              down to the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span>. Let's do this. Please see the 
+              
+              For example, you may want to lineate down to a specific width or height and than change the slope of lineation to another 
+              point, than change it again, and so on untl your lineation passes through 
+              the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span>. Let's do this. Please see the 
               LR expression.<br /><br />
               
               <table style={{width:'100%', border:'none', textAlign:'center'}}>
@@ -194,7 +200,7 @@ const LRww = () => {
                   <td colSpan='3' style={{textAlign:'center', padding:'1% 0 3% 0'}}>
                     Example LR expression is:<br /><br />
                     <span className='expression'>
-                      &nbsp;lr.w('width:px',30,800,12,12)&nbsp;
+                      &nbsp;lr.w('width:px',800,1200,600,700,200,160)&nbsp;
                     </span>
                   </td>
                 </tr>
@@ -202,7 +208,7 @@ const LRww = () => {
                   <td colSpan='3' style={{textAlign:'center', padding:'1% 0 3% 0'}}>
                     Return Value is:<br /><br />
                     <span className='expressionValue'>
-                      &nbsp;font-size:12px&nbsp;
+                      &nbsp;width:459.2px&nbsp;
                     </span>
                   </td>
                 </tr>
@@ -211,40 +217,41 @@ const LRww = () => {
                 <td colSpan='3' style={{}}>
                 <div><button className="toTop" onClick={showHideGraph_02} style={{}}><b>Show/Hide Graph</b></button></div>
                   <div id='showHide_02' style={{display:'none'}}>
-                    <img src={graph_05} alt='is graph_03.jpg' style={{border:'2px solid black', width:'94%'}}></img>
-                    <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a viewport width of 780px (green). 
-                                                                    The return value is 12px since 780px falls on Segment 2. And of
-                                                                    course, it's 12px on all viewport widths of 800px down (and) thru 
+                    <img src={graph_06} alt='is graph_06.jpg' style={{border:'2px solid black', width:'94%'}}></img>
+                    <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a window width of 1024px (green). 
+                                                                    The return value is 459.2px since falls on Segment 2. As shown
+                                                                    segment 2 lineates down to window width of 700px and than segment 3
+                                                                    takes it from there through the 
                                                                     the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP&nbsp;</i></span> 
-                                                                    of 360px.</div>
+                                                                    and beyond.</div>
                   </div>  
                 </td>
                 </tr>
                 
                 <tr>
                   <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
-                    To explain: <br /> The return value of 'font-size:12px' is based on the lineation value at the reported width of 780px. 
-                    The lineation itself is segmented in this case. The first segment is calculated by lineating from 
-                    the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> of 1920px to the arg value of 800px 
-                    (as shown in the expression). The second segment is from 800px down to (and beyond) the LRP of 360px. Thus the return value 
-                    will be 'font-size:12px' at viewport width of 780px and stay at font-size:12dirpx all the way from 800px wide down 
-                    to the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> of 360px wide (See expression). 
-                    Consequently, at 1920px <span title='Upper Range Point' style={{color:'yellow'}}><i>(URP)</i></span> wide the 
-                    return is 'font-size:30px' down to 'font-size:12px' at 800px wide and stays flat at 'font-size:12px' from 800px wide 
-                    down to 360px <span title='Lower Range Point' style={{color:'yellow'}}><i>(LRP)</i></span> wide where it is 
-                    still 'font-size:12px'.<br />
+                    <span className='toExplain'>&nbsp;To explain:&nbsp;</span> <br /> The return value of 'width:459.2px' is based on the 
+                    lineation value at the reported width of 1024px. 
+                    The lineation itself is segmented in this case.<br /><br /> The first segment is calculated by lineating from 
+                    the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> of 1920px to the arg value of 1200px 
+                    (as shown in the expression).<br /><br /> The second segment lineates from 1200px down to 700px and will return a response width of 600px
+                    down to 200px respectively. Again, the reported window width of 1024px is in this segment and returns 'width:459.2px'.<br /><br /> 
+                    Segment 3 lineates from 700px down through the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> of
+                    360px and returns a width of 200px down to 160px at the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP&nbsp;</i></span>
+                    respectively.<br /><br />
+                    
                   </td>
                 </tr>
               </table><br />
               
               This example can have other expression formats:<br />
-              let a = lr.w('font-size:px',30,800,12,12);<br />
-              let b = lr.w('px',30,800,12,12);<br /> 
-              let c = lr.w('',30,800,12,12);<br /><br />
+              let a = lr.w('width:px',800,1200,600,700,200,160);<br />
+              let b = lr.w('px',800,1200,600,700,200,160);<br /> 
+              let c = lr.w('',800,1200,600,700,200,160);<br /><br />
               returns:<br />
-              a = 'font-size:12px'&nbsp;(is string)<br />
-              b = '12px'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
-              c = &nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
+              a = 'width:459.2px'&nbsp;(is string)<br />
+              b = '459.2px'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
+              c = &nbsp;459.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
 
               <table style={{border:'none', width:'100%'}} >
                 <tr>

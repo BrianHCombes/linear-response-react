@@ -94,10 +94,18 @@ border:1px solid lime;
   
 }
 
-descText
+.descText
 {
 padding:1%; 
 vertical-align:middle; 
 font-family:monospace; 
 text-align:center;   
+}
+
+.toExplain
+{
+background-color:#004400;
+border-radius:0.3em;
+border:1px solid lime  
+  
 }
