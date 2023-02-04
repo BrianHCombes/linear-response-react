@@ -27,7 +27,6 @@ const LRh = () => {
       
     {/* lr.w(args) example  ********************************************************************************************************/}      
       <div id='lrw' style={{position:'relative', margin:'0 auto'}}>  
-        
         <table  className='exampTable' style={{position:'relative', margin:'0 auto'}}>
         <button className="toTop" onClick={() => window.scrollTo(0,0)} style={{position:'absolute', left:'0.5%', top:'1%'}}><b>To Top</b></button>
           <tr>
@@ -152,14 +151,14 @@ const LRh = () => {
               <br />lr.h(args)
             </td>
             <td className='descText'  style={{padding:'1%', textAlign:'left',  lineHeight:'110%', fontSize:lr.w('em',1.25,1)}}>
-              LR has the capability to lineate in segments as defined by the argument values you enter. LR.w(args) can accept 
-              3 + 2n arguments so you can lineate from the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP&nbsp;</i></span> 
-              to a pre determined point and then optionally lineate to another predetermined point and/or down to the 
-              <span title='Lower Range Point' style={{color:'yellow'}}><i>&nbsp;LRP</i></span>, and so on, all at a different rates. 
-              This is an ideal capability of LR for those finicky response situations.<br /><br />
-              For example, you may want to lineate down to a specific width or height and then stay flat the rest of the way 
-              down to the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span>. Let's do this. Please see the 
-              LR expression.<br /><br />
+              LR has the capability to lineate in the opposite direction as defined by the argument values you enter. LR.h(args) can accept 
+              arguments so you can lineate from a small value at the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP&nbsp;</i></span> 
+              to a big value at the <span title='Lower Range Point' style={{color:'yellow'}}><i>&nbsp;LRP</i></span>.<br /><br /> 
+              
+              This is nothing special and just illustrates the flexibility of LR in that you can return small values on a big screen and 
+              big values on a small screen. In this example, the return value at the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP&nbsp;</i></span>
+              is 'font-size:1em' and at the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> it is 'font-size:3em'. 
+              It all boils down to how you enter your arguments. Let's do this. Please see the LR expression.<br /><br />
               
               <table style={{width:'100%', border:'none', textAlign:'center'}}>
                 <tr>
@@ -170,20 +169,20 @@ const LRh = () => {
 
                 <tr>
                   <td style={{borderColor:'lime'}}>
-                    1920px 
+                    929px 
                   </td>
                   <td style={{borderColor:'lime'}}>
-                    780px
+                    800px
                   </td>
                   <td style={{borderColor:'lime'}}>
-                    360px
+                    560px
                   </td>
                 </tr>
                 <tr>
                   <td colSpan='3' style={{textAlign:'center', padding:'1% 0 3% 0'}}>
                     Example LR expression is:<br /><br />
                     <span className='expression'>
-                      &nbsp;lr.w('font-size:px',30,800,12,12)&nbsp;
+                      &nbsp;lr.h('font-size:em',1,3)&nbsp;
                     </span>
                   </td>
                 </tr>
@@ -191,7 +190,7 @@ const LRh = () => {
                   <td colSpan='3' style={{textAlign:'center', padding:'1% 0 3% 0'}}>
                     Return Value is:<br /><br />
                     <span className='expressionValue'>
-                      &nbsp;font-size:12px&nbsp;
+                      &nbsp;font-size:1.70em&nbsp;
                     </span>
                   </td>
                 </tr>
@@ -201,45 +200,38 @@ const LRh = () => {
                 <div><button className="toTop" onClick={showHideGraph_02} style={{}}><b>Show/Hide Graph</b></button></div>
                   <div id='showHide_02' style={{display:'none'}}>
                     <img src={graph_08} alt='is graph_08.jpg' style={{border:'2px solid black', width:'94%'}}></img>
-                    <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a viewport width of 780px (green). 
-                                                                    The return value is 12px since 780px falls on Segment 2. And of
-                                                                    course, it's 12px on all viewport widths of 800px down (and) thru 
-                                                                    the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP&nbsp;</i></span> 
-                                                                    of 360px.</div>
+                    <div style={{textAlign:'left', padding:'0 3%'}}>The device here has reported a viewport height of 800px (green). 
+                                                                    The return value is 'font-size:1.70em'. By inspection, the viewport
+                                                                    height of 800px is a bit closer to 929px than 560px, so the return
+                                                                    value will be correspondingly closer to 1em than 3em.
+                    </div>
                   </div>  
                 </td>
                 </tr>
                 
                 <tr>
                   <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
-                    <span className='toExplain'>&nbsp;To explain:&nbsp;</span> <br /> The return value of 'font-size:12px' is based on the 
-                    lineation value at the reported width of 780px. 
-                    The lineation itself is segmented in this case. The first segment is calculated by lineating from 
-                    the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> of 1920px to the arg value of 800px 
-                    (as shown in the expression). The second segment is from 800px down to (and beyond) the LRP of 360px. Thus the return value 
-                    will be 'font-size:12px' at viewport width of 780px and stay at font-size:12dirpx all the way from 800px wide down 
-                    to the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> of 360px wide (See expression). 
-                    Consequently, at 1920px <span title='Upper Range Point' style={{color:'yellow'}}><i>(URP)</i></span> wide the 
-                    return is 'font-size:30px' down to 'font-size:12px' at 800px wide and stays flat at 'font-size:12px' from 800px wide 
-                    down to 360px <span title='Lower Range Point' style={{color:'yellow'}}><i>(LRP)</i></span> wide where it is 
-                    still 'font-size:12px'.<br />
+                    <span className='toExplain'>&nbsp;To explain:&nbsp;</span> <br /> The return value of 'font-size:1.70em' is based on the 
+                    lineation value at the reported height of 800px. The arguments in the expression are such that a smaller value is 
+                    returned on a higher reported screen height and a larger value is returned on a smaller reported screen height.
+                    This is opposite what a typical intended response would be but LR has the flexibility to do whatever you need done.
                   </td>
                 </tr>
               </table><br />
               
               This example can have other expression formats:<br />
-              let a = lr.w('font-size:px',30,800,12,12);<br />
-              let b = lr.w('px',30,800,12,12);<br /> 
-              let c = lr.w('',30,800,12,12);<br /><br />
+              let a = lr.h('font-size:em',1,3);<br />
+              let b = lr.h('em',1,3);<br /> 
+              let c = lr.h('',1,3);<br /><br />
               returns:<br />
-              a = 'font-size:12px'&nbsp;(is string)<br />
-              b = '12px'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
-              c = &nbsp;12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
+              a = 'font-size:1.70em'&nbsp;(is string)<br />
+              b = '1.70em'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
+              c = &nbsp;1.70&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
 
               <table style={{border:'none', width:'100%'}} >
                 <tr>
                   <td style={{border:'none', width:'7%', verticalAlign:'top'}} >Note:</td>
-                  <td style={{border:'none'}} >Upper and Lower range points are assumed to be 1920px and 360px respectively.</td>
+                  <td style={{border:'none'}} >Upper and Lower range points are assumed to be 929px and 560px respectively.</td>
                 </tr>
                 <tr>
                   <td style={{border:'none', width:'7%', verticalAlign:'top'}} >Note:</td>
