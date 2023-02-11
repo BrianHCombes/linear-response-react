@@ -3,12 +3,23 @@ import './common-css.css';
 import { Outlet, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import {lr} from '../../lr/lr-single.js';
+import graph_11 from '../../images/graph_11.jpg';
 
 
 
 const LRwr = () => {
   
-  console.log("Who Goes There?");
+  let onOff_01 = 0;
+  function showHideGraph_01(){
+    if(onOff_01 === 0){ document.getElementById('showHide_01').style.display = "inline"; onOff_01 = 1;} else
+    { document.getElementById('showHide_01').style.display = "none"; onOff_01 = 0;} 
+  }  
+  
+  let onOff_02 = 0;
+  function showHideGraph_02(){
+    if(onOff_02 === 0){ document.getElementById('showHide_02').style.display = "inline"; onOff_02 = 1;} else
+    { document.getElementById('showHide_02').style.display = "none"; onOff_02 = 0;} 
+  } 
   
   return (
     <React.StrictMode>
@@ -44,17 +55,33 @@ const LRwr = () => {
               <td style={{borderColor:'lime'}}>560px/360px = 1.555</td>
             </tr>
             <tr>
-              <td colSpan='3' style={{textAlign:'center'}}>
-                Example LR expression is:<br />
-                <span style={{fontSize:'1.25em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;lr.r('width:px',50,15)&nbsp;</span>
+              <td colSpan='3' style={{textAlign:'center', padding:'0.75% 0'}}>
+                Example LR expression is:<br /><br />
+                <span className='expression'>
+                  &nbsp;lr.wr('width:%',60,23)&nbsp;
+                </span><br /><br />
               </td>
             </tr>
             <tr>
-              <td colSpan='3' style={{textAlign:'center'}}>
-                Return Value is:<br />
-                <span style={{fontSize:'1.1em', lineHeight:'160%', backgroundColor:'#004400', borderRadius:'0.3em'}}>&nbsp;font-size:13.53px&nbsp;</span>
+              <td colSpan='3' style={{textAlign:'center', padding:'0.75% 0'}}>
+                Return Value is:<br /><br />
+                <span className='expressionValue'>
+                  &nbsp;width:10.34%&nbsp;
+                </span><br /><br />
               </td>
             </tr>
+            <tr>
+              <td colSpan='3' style={{}}>
+              <div><button className="toTop" onClick={showHideGraph_01} style={{}}><b>Show/Hide Graph</b></button></div>
+                <div id='showHide_01' style={{display:'none'}}>
+                  <img src={graph_11} alt='is graph_11.jpg' style={{border:'2px solid black', width:'94%'}}></img>
+                  <div style={{textAlign:'left', padding:'0 3%'}}>The device here has a reported height/width ratio of 1.333 (green). 
+                                                                  The return value is 'width:28.32%'. 
+                  </div>
+                </div>  
+              </td>
+            </tr>
+            
             <tr>
               <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
                 To explain: <br /> The return value is based on the lineation value at the reported ratio of 1.600. 
