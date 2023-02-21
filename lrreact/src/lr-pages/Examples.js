@@ -51,7 +51,7 @@ function Examples(){
                 <td><Link className="button" to="/examples/lrwr" title="This is the window height method"  >&nbsp;lr.wr(args)&nbsp;</Link></td>
               </tr>
               <tr>
-                <td>lr.wLF(args)</td>
+                <td><Link className="button" to="/examples/lrwlf"  title="This is the viewport width long form method" >&nbsp;lr.wLF(args)&nbsp;</Link></td>
                 <td>lr.wwLF(args)</td>
                 <td>lr.hLF(args)</td>
                 <td>lr.whLF(args)</td>
