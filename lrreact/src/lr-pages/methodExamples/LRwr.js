@@ -40,10 +40,10 @@ const LRwr = () => {
           </td>
           <td style={{padding:'1%', verticalAlign:'middle', fontFamily:'monospace', fontSize:'1.25em'}}>
             Uses the reported <span className='hlt_01'>&nbsp;window height/width ratio&nbsp;</span> to establish the proper CSS return. 
-            For this example assume the reported window width (screen.availWidth) is 601px and the reported height (window.innerHeight)
-            is 962px. By ratio, 962px/601px is a ratio of 1.600. This ratio will be used to calculate the proper response.<br /><br />
-            Now assume the Upper Range Point (URP) width is 1920px and the Lower Range Point (LRP) width is 360px. Furthermore, assume the Upper Range
-            Point height is 929px and the Lower Range Point height is 560px.<br /><br />
+            For this example assume the reported window width (screen.availWidth) is 360px and the reported height (window.innerHeight)
+            is 800px. By ratio, 800px/360px is a ratio of 2.222. This ratio will be used to calculate the proper response.<br /><br />
+            Now assume the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> ratio is 0.484 and 
+            the <span title='Lower Range Point' style={{color:'yellow'}}><i>LRP</i></span> ratio is 1.779.<br /><br />
             
           <table style={{width:'100%', border:'none', textAlign:'center'}}>
             <tr>
@@ -51,8 +51,8 @@ const LRwr = () => {
             </tr>
             <tr>
               <td style={{borderColor:'lime'}}>929px/1920px = 0.484</td>
-              <td style={{borderColor:'lime'}}>962px/601px = 1.600</td>
-              <td style={{borderColor:'lime'}}>560px/360px = 1.555</td>
+              <td style={{borderColor:'lime'}}>800px/360px = 2.222</td>
+              <td style={{borderColor:'lime'}}>667px/375px = 1.779</td>
             </tr>
             <tr>
               <td colSpan='3' style={{textAlign:'center', padding:'0.75% 0'}}>
@@ -75,8 +75,8 @@ const LRwr = () => {
               <div><button className="toTop" onClick={showHideGraph_01} style={{}}><b>Show/Hide Graph</b></button></div>
                 <div id='showHide_01' style={{display:'none'}}>
                   <img src={graph_11} alt='is graph_11.jpg' style={{border:'2px solid black', width:'94%'}}></img>
-                  <div style={{textAlign:'left', padding:'0 3%'}}>The device here has a reported height/width ratio of 1.333 (green). 
-                                                                  The return value is 'width:28.32%'. 
+                  <div style={{textAlign:'left', padding:'0 3%'}}>The device here has a reported height/width ratio of 2.222 (green). 
+                                                                  The return value is 'width:10.34%'. 
                   </div>
                 </div>  
               </td>
@@ -84,25 +84,28 @@ const LRwr = () => {
             
             <tr>
               <td colSpan='3' style={{textAlign:'left', padding:'0.5em'}}>
-                To explain: <br /> The return value is based on the lineation value at the reported ratio of 1.600. 
-                The lineation itself is calculated by using the upper and lower range points of 0.484 and 1.555 respectively.
-                Note: since the reported ratio is closer (is actually past) the LRP the return value is closer to 15 (or what the response
-                would be if the reported ratio had been at the LRP of 1.555).<br />
+                To explain: <br /> The return value is based on the lineation value at the reported ratio of 2.222. 
+                The ratio is what would be typical of a mobile screen height/width ratio. In this case it's 800px high over 360px wide
+                which gives you a ratio of 2.222. The lineation itself is calculated by using 
+                the <span title='Upper Range Point' style={{color:'yellow'}}><i>URP</i></span> and
+                <span title='Lower Range Point' style={{color:'yellow'}}><i>&nbsp;LRP</i></span> of 0.484 and 1.779 respectively.
+                Note: The reported ratio is (is actually past) the LRP but the appropriate value of 'width:10.34%' is 
+                still reported accordingly.<br />
                 
               </td>
             </tr>
             
           </table>
             
-            There are 3 ways to return a value. <br /><br />
+            There are 3 ways to return this value. <br /><br />
             expressions:<br />
-            let a = lr.w('width:px',50,15);<br />
-            let b = lr.w('px',50,15);<br /> 
-            let c = lr.w('',50,15);<br /><br />
+            let a = lr.wr('width:%',60,23);<br />
+            let b = lr.wr('%',60,23);<br /> 
+            let c = lr.wr('',60,23);<br /><br />
             returns:<br />
-            a = 'width:13.53px'&nbsp;(is string)<br />
-            b = '13.53px'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
-            c = &nbsp;13.53&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
+            a = 'width:10.34%'&nbsp;(is string)<br />
+            b = '10.34%'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is string)<br />
+            c = &nbsp;10.34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(is num)<br /><br />
             
             <table style={{border:'none', width:'100%'}} >
               <tr>

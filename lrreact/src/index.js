@@ -14,7 +14,8 @@ import Default from './lr-pages/Default';
 import Starting from './lr-pages/Starting';
 
 import NestTest from './lr-pages/NestTest';
-import LRw  from './lr-pages/methodExamples/LRw';
+import LRw    from './lr-pages/methodExamples/LRw';
+import LRwLF  from './lr-pages/methodExamples/LRwLF';
 import LRww from './lr-pages/methodExamples/LRww';
 import LRh  from './lr-pages/methodExamples/LRh';
 import LRwh from './lr-pages/methodExamples/LRwh';
@@ -39,6 +40,8 @@ export default function PageRouter() {
                 <Route path="lrwh"   element={<LRwh />} />
                 <Route path="lrr"    element={<LRr />} />
                 <Route path="lrwr"   element={<LRwr />} />
+                
+                <Route path="lrwlf"   element={<LRwLF />} />
             </Route>
             <Route path="/nestTest" element={<NestTest />}>
                 <Route path="nestPage1" element={<LRw />} />
